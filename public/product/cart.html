@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/fontawesome-free-5.15.4-web/css/all.css">
+    <script src="assets/fontawesome-free-5.15.4-web/js/all.js"></script>
+    <title>Tukang Pedia</title>
+</head>
+<body class="bg-gray-200">
+    <header class="bg-blue-500 rounded-b-3xl">
+        <div class="flex justify-between border-b border-white">
+            <nav class="flex justify-center text-white ml-10 py-2">
+                <a class="mr-10 mt-1" href="">Seller Center</a>
+                <p class="mr-5 mt-1">Follow us</p>
+                <span class="text-xl mx-2"><i class="fab fa-instagram"></i></span>
+                <span class="text-xl mx-2"><i class="fab fa-facebook"></i></span>
+                <span class="text-xl mx-2"><i class="fab fa-twitter"></i></span>
+                <span class="text-xl mx-2"><i class="fab fa-telegram"></i></span>
+            </nav>
+            <nav class="flex justify-center text-white ml-10 py-2">
+                <a class="mr-10 mt-1" href="">Bantuan</a>
+                <a class="mr-10 mt-1" href="">Login</a>
+            </nav>
+        </div>
+        <div class="py-10 flex justify-center border-b border-white">
+            <div class="w-2/4 text-right my-auto">
+                <h1 class="text-white text-4xl">TUKANGPEDIA</h1>
+            </div>
+            <div class="w-1/2 flex justify-center">
+                <input type="text" class="rounded-full px-3 bg-white h-10 w-72 my-auto focus:border-blue-100" placeholder="Search" >
+            </div>
+            <div class="w-2/4 text-left">
+                <img src="assets/images/craftsman.png" class="h-20">
+            </div>
+        </div>
+        <nav class="flex ml-28 gap-10 py-3">
+            <a class="text-white text-xl hover:text-blue-900" href="">Home</a>
+            <a class="text-white text-xl hover:text-blue-900" href="">Mitra</a>
+            <a class="text-white text-xl hover:text-blue-900" href="">Download App</a>
+            <a class="text-white text-xl hover:text-blue-900" href="">Paket borongan</a>
+        </nav>
+    </header>
+
+    <main class="py-5 mx-10">
+        <div class="alamat rounded-3xl bg-white shadow-2xl px-10 py-5 flex justify-between">
+            <div class="left">
+                <p class="text-2xl text-blue-400"> <i class="fas fa-map-marked"></i> Alamat Pengiriman Tukang</p>
+                <p class="font-bold">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque quibusdam sapiente </p>
+            </div>
+            <div class="right">
+                <button type="button" class="rounded-2xl px-4 py-1 bg-blue-500 text-white hover:bg-blue-200"><i class="fas fa-pen-alt"></i> Edit</button>
+            </div>
+        </div>
+
+        <div class="alamat rounded-3xl bg-white shadow-2xl px-10 py-5 flex mt-5">
+            <table class="table-auto w-full">
+                <thead>
+                    <tr>
+                        <th class="text-left">
+                            <p class="text-md"> <i class="fas fa-user-tag"></i> Tukang dipesan</p>
+                        </th>
+                        <th class="text-left">Harga/org</th>
+                        <th class="text-left">Jumlah</th>
+                        <th class="text-left">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b-2 border-blue-300 mt-3">
+                        <td class="flex">
+                            <img src="assets/images/tukang.png" class="my-3 h-32">
+                            <div class="my-auto ml-5">
+                                <p class="text-2xl text-gray-400">Tukang Bangunan</p>
+                                <p class="font-bold">PT. Spydercode </p>
+                            </div>
+                        </td>
+                        <td>Rp. 100.000</td>
+                        <td>1</td>
+                        <td>Rp. 100.10000</td>
+                    </tr>
+                    <tr class="border-b-2 border-blue-300 mt-3">
+                        <td class="flex">
+                            <img src="assets/images/tukang.png" class="my-3 h-32">
+                            <div class="my-auto ml-5">
+                                <p class="text-2xl text-gray-400">Tukang Bangunan</p>
+                                <p class="font-bold">PT. Spydercode </p>
+                            </div>
+                        </td>
+                        <td>Rp. 100.000</td>
+                        <td>1</td>
+                        <td>Rp. 100.10000</td>
+                    </tr>
+                    <tr class="border-b-2 border-blue-300 mt-3 h-20">
+                        <td class="flex">
+                            <div class="text-blue-300 font-bold"><p>Opsi Pengiriman :</p></div>
+                            <div class="ml-10">
+                                <p class="font-bold">Reguler</p>
+                                <p class="text-gray-600">Estimasi sampai tgl 20-21 January </p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td><button class="bg-blue-400 px-3 py-1 rounded-full text-sm text-white">Ubah</button></td>
+                        <td>Rp. 100.10000</td>
+                    </tr>
+                    <tr class="h-32">
+                        <td></td>
+                        <td></td>
+                        <td class="text-blue-300 text-2xl font-bold">Total Pembayaran</td>
+                        <td>Rp. 100.10000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="alamat rounded-3xl bg-white shadow-2xl px-10 py-5 flex justify-between mt-5">
+            <div class="left">
+                <p class="text-2xl text-blue-400"> <i class="fas fa-dollar-sign"></i> Metode pembayaran</p>
+                <p class="font-bold">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque quibusdam sapiente </p>
+            </div>
+            <div class="right">
+                <button type="button" class="rounded-2xl px-4 py-1 bg-blue-500 text-white hover:bg-blue-200"><i class="fas fa-pen-alt"></i> Edit</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer bg-gray-500 text-white relative pt-1 border-b-2 border-blue-700">
+        <div class="container mx-auto px-6">
+            <div class="sm:flex sm:mt-8">
+                <div class="mt-8 sm:mt-0 sm:w-full sm:px-8 flex flex-col md:flex-row justify-between">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-white uppercase mb-2">Primary Link</span>
+                        <span class="my-2"><a href="#" class="text-white  text-md hover:text-blue-500">Home</a></span>
+                        <span class="my-2"><a href="#" class="text-white  text-md hover:text-blue-500">Mitra</a></span>
+                        <span class="my-2"><a href="#" class="text-white  text-md hover:text-blue-500">Download App</a></span>
+                        <span class="my-2"><a href="#" class="text-white  text-md hover:text-blue-500">Paket Borongan</a></span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-white uppercase mt-4 md:mt-0 mb-2">Mitra</span>
+                        <span class="my-2"><a href="#" class="text-white text-md hover:text-blue-500">Seller center</a></span>
+                        <span class="my-2"><a href="#" class="text-white  text-md hover:text-blue-500">Registration</a></span>
+                        <span class="my-2"><a href="#" class="text-white text-md hover:text-blue-500">Login</a></span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-white uppercase mt-4 md:mt-0 mb-2">Social Media</span>
+                        <span class="my-2"><a href="#" class="text-white  text-md hover:text-blue-500">Instagram</a></span>
+                        <span class="my-2"><a href="#" class="text-white  text-md hover:text-blue-500">Facebook</a></span>
+                        <span class="my-2"><a href="#" class="text-white  text-md hover:text-blue-500">Twiteer</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6">
+            <div class="mt-16 border-t-2 border-gray-300 flex flex-col items-center">
+                <div class="sm:w-2/3 text-center py-6">
+                    <p class="text-sm text-white font-bold mb-2">
+                        © 2022 Spydercode
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
