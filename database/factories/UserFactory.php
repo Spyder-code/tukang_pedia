@@ -31,6 +31,7 @@ class UserFactory extends Factory
             'password' => Hash::make('admin123'), // password
             'remember_token' => Str::random(10),
             'avatar' => '/storage/user/default.png',
+            'phone' => '083857317946',
         ];
     }
 
