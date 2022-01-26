@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Repositories\CategoryService;
 use App\Repositories\ProductService;
-use App\Repositories\ProvinceService;
+use App\Repositories\RegencyService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,11 +13,11 @@ class ProductController extends Controller
 {
     private $productService;
     private $categoryService;
-    private $provinceService;
+    private $regencyService;
 
-    public function __construct(ProductService $productService, CategoryService $categoryService, ProvinceService $provinceService)
+    public function __construct(ProductService $productService, CategoryService $categoryService, RegencyService $regencyService)
     {
-        $this->provinceService = $provinceService;
+        $this->regencyService = $regencyService;
         $this->categoryService = $categoryService;
         $this->productService = $productService;
     }
@@ -25,7 +25,12 @@ class ProductController extends Controller
 
     public function index()
     {
-        $data = $this->productService->all();
+        if (Auth::id()==1) {
+            $data = $this->productService->all();
+        } else {
+            $data = $this->productService->all()->where('user_id',Auth::id());
+        }
+
         return view('admin.product.index', compact('data'));
     }
 
@@ -33,15 +38,16 @@ class ProductController extends Controller
     public function create()
     {
         $category = $this->categoryService->select();
-        $province = $this->provinceService->select();
-        return view('admin.product.create', compact('category','province'));
+        $regency = $this->regencyService->select();
+        return view('admin.product.create', compact('category','regency'));
     }
 
 
     public function store(Request $request)
     {
-        $image = $this->provinceService->insertFile($request->image,'product');
+        $image = $this->regencyService->insertFile($request->image,'product', '.png');
         $data = $request->all();
+        $data['province_id'] = 15;
         $data['user_id'] = Auth::id();
         $data['image'] = $image;
         $data['rating'] = 0;
@@ -59,7 +65,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $category = $this->categoryService->select();
-        $province = $this->provinceService->select();
+        $province = $this->regencyService->select();
         return view('admin.product.edit', compact('product','category','province'));
     }
 

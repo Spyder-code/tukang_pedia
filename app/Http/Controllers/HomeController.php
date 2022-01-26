@@ -28,6 +28,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        return redirect('/');
+
+    }
+
+    public function main()
+    {
         $visitor = Visitor::all();
         $user = User::all();
         return view('admin.main',compact('visitor','user'));

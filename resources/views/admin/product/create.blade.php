@@ -8,7 +8,7 @@
                 {!! Form::open(['route' => ['product.store'], 'method' => 'post', 'files' => true]) !!}
                 <div class="row">
                     <div class="col">
-                        @include('component.input',['input'=> Form::text('title',null,['class' => 'form-control']),'label'=> Form::label('Judul', 'Judul')])
+                        @include('component.input',['input'=> Form::text('title',null,['class' => 'form-control']),'label'=> Form::label('Judul', 'Judul Layanan')])
                     </div>
                     <div class="col">
                         @include('component.input',['input'=> Form::select('category_id',$category,1,['class' => 'form-control']),'label'=> Form::label('Kategori', 'Kategori')])
@@ -16,10 +16,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        @include('component.input',['input'=> Form::select('province_id',$province,1,['class' => 'form-control','id' => 'province']),'label'=> Form::label('Provinsi', 'Provinsi')])
-                    </div>
-                    <div class="col">
-                        @include('component.input',['input'=> Form::select('regency_id',[''=>''],null,['class' => 'form-control', 'id' => 'regency']),'label'=> Form::label('Kabupaten', 'Kabupaten')])
+                        @include('component.input',['input'=> Form::select('regency_id',$regency,null,['class' => 'form-control', 'id' => 'regency']),'label'=> Form::label('Kabupaten', 'Kabupaten')])
                     </div>
                     <div class="col">
                         @include('component.input',['input'=> Form::select('district_id',[''=>''],null,['class' => 'form-control', 'id' => 'district']),'label'=> Form::label('Kecamatan', 'Kecamatan')])

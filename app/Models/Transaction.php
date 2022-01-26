@@ -14,8 +14,6 @@ class Transaction extends Model
         'product_id',
         'qty',
         'total',
-        'payment_method',
-        'address',
-        'status',
+        'transaction_detail_id',
     ];
 }

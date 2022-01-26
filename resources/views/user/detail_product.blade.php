@@ -1,7 +1,10 @@
 @extends('layouts.user')
 @section('content')
 <main class="py-5">
-    <form action="" method="post" class="mx-20 flex my-3 bg-white rounded-3xl shadow-2xl">
+    <form action="{{ route('cart.store') }}" method="post" class="mx-20 flex my-3 bg-white rounded-3xl shadow-2xl">
+        @csrf
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
+        <input type="hidden" name="price" value="{{ $product->price }}">
         <div class="w-1/2 m-10 flex justify-center">
             <img src="{{ $product->image }}" alt="">
         </div>
@@ -22,7 +25,7 @@
                         <span class="font-bold text-lg">Kuantitas</span>
                     </div>
                     <div class="w-3/4">
-                        <input type="number" class="w-full rounded-lg border border-blue-400 py-2 px-5">
+                        <input type="number" name="qty" min="1" max="{{ $product->stock }}" class="w-full rounded-lg border border-blue-400 py-2 px-5"> <span>Tersedia : {{ $product->stock }} Orang</span>
                     </div>
                 </div>
                 <div class="flex mt-5 mr-5">
@@ -43,7 +46,7 @@
                                 <tr>
                                     <td width="200px">Nama Vendor</td>
                                     <td>:</td>
-                                    <td>{{ $product->user->name }}</td>
+                                    <td>{{ $product->user->mitra->name }}</td>
                                 </tr>
                                 <tr>
                                     <td>Kategori Pekerjaan</td>

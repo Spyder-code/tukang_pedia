@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-5.15.4-web/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/noty.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mint.css') }}">
     <script src="{{ asset('fontawesome-free-5.15.4-web/js/all.js') }}"></script>
     <title>Tukang Pedia</title>
 </head>
@@ -13,7 +15,7 @@
     <header class="bg-blue-500 rounded-b-3xl">
         <div class="flex justify-between border-b border-white">
             <nav class="flex justify-center text-white ml-10 py-2">
-                <a class="mr-10 mt-1" href="">Seller Center</a>
+                <a class="mr-10 mt-1" href="{{ route('home') }}">Seller Center</a>
                 <p class="mr-5 mt-1">Follow us</p>
                 <span class="text-xl mx-2"><i class="fab fa-instagram"></i></span>
                 <span class="text-xl mx-2"><i class="fab fa-facebook"></i></span>
@@ -21,8 +23,28 @@
                 <span class="text-xl mx-2"><i class="fab fa-telegram"></i></span>
             </nav>
             <nav class="flex justify-center text-white ml-10 py-2">
-                <a class="mr-10 mt-1" href="">Bantuan</a>
-                <a class="mr-10 mt-1" href="{{ route('page.account') }}">Login</a>
+                <a class="mr-10 mt-1 text-white" href="">Bantuan</a>
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                @if (Auth::check())
+                <div x-data="{dropdownMenu: false}" class="relative">
+                    <!-- Dropdown toggle button -->
+                    <button @click="dropdownMenu = ! dropdownMenu" class="flex items-center mt-1">
+                        <span class="mr-4">{{ Auth::user()->name }}</span>
+                    </button>
+                    <!-- Dropdown list -->
+                    <div x-show="dropdownMenu" class="absolute right-0 py-2 mt-2 bg-white bg-gray-100 rounded-md shadow-xl w-44">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
+                            My account
+                        </a>
+                        <form action="{{ route('logout') }}" method="post" id="form">
+                            @csrf
+                            <div onclick="return form.submit()" class="block cursor-pointer px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">Sign Out</div>
+                        </form>
+                    </div>
+                </div>
+                @else
+                    <a class="mr-10 mt-1 text-white" href="{{ route('page.account') }}">Login</a>
+                @endif
             </nav>
         </div>
         <div class="py-10 flex justify-center border-b border-white">
@@ -38,9 +60,11 @@
         </div>
         <nav class="flex ml-28 gap-10 py-3">
             <a class="text-white text-xl hover:text-blue-900" href="{{ route('page.home') }}">Home</a>
-            <a class="text-white text-xl hover:text-blue-900" href="">Mitra</a>
+            <a class="text-white text-xl hover:text-blue-900" href="{{ route('home') }}">Mitra</a>
             <a class="text-white text-xl hover:text-blue-900" href="">Download App</a>
-            <a class="text-white text-xl hover:text-blue-900" href="">Paket borongan</a>
+            {{-- <a class="text-white text-xl hover:text-blue-900" href="">Paket borongan</a> --}}
+            <a class="text-white text-xl hover:text-blue-900" href="{{ route('page.pesanan') }}">Pesanan <sup>{{ Auth::check()?Auth::user()->cart->count():'' }}</sup></a>
+            <a class="text-white text-xl hover:text-blue-900" href="{{ route('page.transaksi') }}">Transaksi Saya</a>
         </nav>
     </header>
 
@@ -82,6 +106,11 @@
             </div>
         </div>
     </footer>
+
+
+    <script src="{{ asset('js/noty.js') }}"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    @yield('script')
 </body>
 </html>

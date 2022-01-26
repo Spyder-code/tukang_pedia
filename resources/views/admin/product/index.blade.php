@@ -66,7 +66,7 @@
                                 <td class="txt-oflo">{{ $item->price }}</td>
                                 <td class="txt-oflo">{{ $item->stock }}</td>
                                 <td class="txt-oflo">{{ $item->rating }}</td>
-                                <td class="txt-oflo">{{ $item->description }}</td>
+                                <td class="txt-oflo">{{Str::limit($item->description, 20, $end='.......')}}</td>
                                 <td class="txt-oflo"><img src="{{ $item->image }}" class="img-fluid" style="height: 50px"></td>
                                 <td class="d-flex">
                                     <a href="{{ route('product.edit',$item) }}" class="btn btn-primary mx-1" title="Edit"><i class="fas fa-pencil-alt"></i></a>

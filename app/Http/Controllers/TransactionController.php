@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Transaction;
+use App\Repositories\CartService;
+use App\Repositories\TransactionDetailService;
 use App\Repositories\TransactionService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
     private $transactionService;
+    private $cartService;
+    private $transactionDetailService;
 
-    public function __construct(TransactionService $transactionService)
+    public function __construct(TransactionService $transactionService, CartService $cartService, TransactionDetailService $transactionDetailService)
     {
+        $this->cartService = $cartService;
+        $this->transactionDetailService = $transactionDetailService;
         $this->transactionService = $transactionService;
     }
 
@@ -31,8 +39,24 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
-        $this->transactionService->store($request->all());
-        return redirect()->route('transaction.index')->with('success','Transaction has success created');
+        $cart = $this->cartService->all()->where('user_id', Auth::id());
+        $data = $request->all();
+        $data['code'] = 'TRX'.time().Auth::id();
+        $data['status'] = 0;
+        $data['total'] = $cart->sum('total');
+        $data['user_id'] = Auth::id();
+        $transaction = $this->transactionDetailService->store($data);
+        foreach ($cart as $item ) {
+            $item_transaction = array();
+            $item_transaction['user_id'] = $item->user_id;
+            $item_transaction['product_id'] = $item->product_id;
+            $item_transaction['qty'] = $item->qty;
+            $item_transaction['total'] = $item->total;
+            $item_transaction['transaction_detail_id'] = $transaction->id;
+            $this->transactionService->store($item_transaction);
+        }
+        Cart::where('user_id', Auth::id())->delete();
+        return redirect()->route('page.transaksi')->with('success','Transaction has success created');
     }
 
 

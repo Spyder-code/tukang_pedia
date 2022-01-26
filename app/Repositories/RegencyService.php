@@ -12,4 +12,8 @@ class RegencyService extends Repository
         $this->model = new Regency();
     }
 
+    public function select()
+    {
+        return $this->model->all()->where('province_id',15)->pluck('name','id');
+    }
 }

@@ -11,12 +11,10 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('product_id')->constrained('categories');
+            $table->foreignId('product_id')->constrained('products');
+            $table->foreignId('transaction_detail_id')->constrained('transaction_details');
             $table->integer('qty');
             $table->integer('total');
-            $table->string('payment_method');
-            $table->text('address');
-            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@
     <div class="flex">
         <div class="w-1/4 px-5">
             <div class="category my-3 bg-white">
-                <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-2xl font-bold">Categories</div>
+                <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-xl font-bold">Categories</div>
                 <div class="">
                     @foreach ($category as $item)
                     <a href="{{ route('page.product.category', $item->id) }}" class="flex hover:bg-blue-100 px-5 py-3 text-center text-md font-bold border-b border-blue-400">
@@ -15,9 +15,9 @@
                 </div>
             </div>
             <div class="category mt-5 bg-white">
-                <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-2xl font-bold">Wilayah</div>
+                <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-xl font-bold">Wilayah</div>
                 <div class="flex flex-wrap justify-content-center">
-                    @foreach ($province as $item)
+                    @foreach ($regency as $item)
                     <a href="{{ route('page.product.wilayah', $item->id) }}" class="hover:bg-blue-300 px-3 py-1 text-white m-1 rounded-full bg-blue-500 text-center text-xs" style="font-size: 0.6rem">
                         <span>{{ $item->name }}</span>
                     </a>

@@ -16,9 +16,6 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        @include('component.input',['input'=> Form::select('province_id',$province,$product->province_id,['class' => 'form-control','id' => 'province']),'label'=> Form::label('Provinsi', 'Provinsi')])
-                    </div>
-                    <div class="col">
                         @include('component.input',['input'=> Form::select('regency_id',[ $product->regency_id => $product->regency->name],$product->regency_id,['class' => 'form-control', 'id' => 'regency']),'label'=> Form::label('Kabupaten', 'Kabupaten')])
                     </div>
                     <div class="col">
