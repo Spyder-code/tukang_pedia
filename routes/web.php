@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\TransactionDetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,12 @@ Route::get('/account', [PageController::class,'account'])->name('page.account');
 Route::get('/register-mitra', [PageController::class,'registerMitra'])->name('page.register.mitra');
 Route::get('/pesanan', [PageController::class,'cart'])->name('page.pesanan');
 Route::get('/transaksi-saya', [PageController::class,'transaksi'])->name('page.transaksi');
+Route::get('/invoice', [PageController::class,'invoice'])->name('page.invoice');
 Route::get('/product-wilayah/{id}', [PageController::class,'product_wilayah'])->name('page.product.wilayah');
 Route::get('/product-category/{id}', [PageController::class,'product_category'])->name('page.product.category');
 Route::get('/product-detail/{product}', [PageController::class,'detail_product'])->name('page.product.detail');
+Route::get('/detail/transaction/{detailTransaction}', [PageController::class,'detail_transaction'])->name('page.transaction.detail');
+Route::put('/update-payment/{id}', [TransactionDetailController::class,'updatePaymentMethod'])->name('update.payment');
 
 
 Route::get('/blank', function () {
@@ -46,3 +50,4 @@ Route::resource('transaction',App\Http\Controllers\TransactionController::class)
 Route::resource('mitra',App\Http\Controllers\MitraController::class);
 Route::resource('cart',App\Http\Controllers\CartController::class);
 Route::resource('transactiondetail',App\Http\Controllers\TransactionDetailController::class);
+Route::resource('subcategory',App\Http\Controllers\SubCategoryController::class);

@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Repositories\CategoryService;
 use App\Repositories\ProductService;
 use App\Repositories\RegencyService;
+use App\Repositories\SubCategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,13 +14,15 @@ class ProductController extends Controller
 {
     private $productService;
     private $categoryService;
+    private $subCategoryService;
     private $regencyService;
 
-    public function __construct(ProductService $productService, CategoryService $categoryService, RegencyService $regencyService)
+    public function __construct(ProductService $productService, CategoryService $categoryService, RegencyService $regencyService, SubCategoryService $subCategoryService)
     {
-        $this->regencyService = $regencyService;
-        $this->categoryService = $categoryService;
         $this->productService = $productService;
+        $this->categoryService = $categoryService;
+        $this->subCategoryService = $subCategoryService;
+        $this->regencyService = $regencyService;
     }
 
 
@@ -38,8 +41,9 @@ class ProductController extends Controller
     public function create()
     {
         $category = $this->categoryService->select();
+        $sub_category = $this->subCategoryService->select();
         $regency = $this->regencyService->select();
-        return view('admin.product.create', compact('category','regency'));
+        return view('admin.product.create', compact('category','regency','sub_category'));
     }
 
 

@@ -21,6 +21,13 @@
     </a>
 </li>
 <li class="sidebar-item">
+    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('subcategory.index') }}"
+        aria-expanded="false">
+        <i class="fa fa-list" aria-hidden="true"></i>
+        <span class="hide-menu">SubCategory Management</span>
+    </a>
+</li>
+<li class="sidebar-item">
     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('mitra.index') }}"
         aria-expanded="false">
         <i class="fa fa-list" aria-hidden="true"></i>

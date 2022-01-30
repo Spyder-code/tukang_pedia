@@ -8,7 +8,7 @@
                 <div class="">
                     @foreach ($category as $item)
                     <a href="{{ route('page.product.category', $item->id) }}" class="flex hover:bg-blue-100 px-5 py-3 text-center text-md font-bold border-b border-blue-400">
-                        <i class="fas mr-3 fa-{{ $item->icon }} text-blue-300"></i>
+                        <i class="fas mr-3 fa-angle-double-right text-blue-300"></i>
                         <span>{{ $item->name }}</span>
                     </a>
                     @endforeach
@@ -16,12 +16,15 @@
             </div>
             <div class="category mt-5 bg-white">
                 <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-2xl font-bold">Wilayah</div>
-                <div class="flex flex-wrap">
-                    @foreach ($regency as $item)
-                    <a href="{{ route('page.product.wilayah', $item->id) }}" class="hover:bg-blue-300 px-3 py-1 text-white m-1 rounded-full bg-blue-500 text-center text-xs" style="font-size: 0.6rem">
-                        <span>{{ $item->name }}</span>
-                    </a>
-                    @endforeach
+                <div class="">
+                    <div class="">
+                        @foreach ($regency as $item)
+                        <a href="{{ route('page.product.wilayah', $item->id) }}" class="flex hover:bg-blue-100 px-5 py-3 text-center border-b border-blue-400" style="font-size: 0.7rem">
+                            <i class="fas mr-3 fa-arrow-right text-blue-300"></i>
+                            <span>{{ $item->name }}</span>
+                        </a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

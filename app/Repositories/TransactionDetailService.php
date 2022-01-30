@@ -11,4 +11,12 @@ class TransactionDetailService extends Repository
     {
         $this->model = new TransactionDetail;
     }
+
+    public function updatePaymentMethod($id, $data)
+    {
+        $transactionDetail = $this->model->find($id);
+        $transactionDetail->payment_method = $data;
+        $transactionDetail->save();
+        return $transactionDetail;
+    }
 }

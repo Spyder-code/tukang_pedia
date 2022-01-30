@@ -18,4 +18,9 @@ class TransactionDetail extends Model
         'payment_method',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

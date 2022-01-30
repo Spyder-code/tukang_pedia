@@ -51,13 +51,20 @@ class TransactionDetailController extends Controller
     public function update(Request $request, TransactionDetail $transactiondetail)
     {
         $this->transactiondetailService->update($request->all(),$transactiondetail->id);
-        return redirect()->route('transactiondetail.index')->with('success','TransactionDetail has success updated');
+        return back()->with('success','TransactionDetail has success updated');
     }
 
 
     public function destroy(TransactionDetail $transactiondetail)
     {
         $this->transactiondetailService->destroy($transactiondetail->id);
-        return redirect()->route('transactiondetail.index')->with('success','TransactionDetail has success deleted');
+        return back()->with('success','TransactionDetail has success deleted');
+    }
+
+    public function updatePaymentMethod($id, Request $request)
+    {
+        $data = $request->payment_method;
+        $transactionDetail = $this->transactiondetailService->updatePaymentMethod($id, $data);
+        return back()->with('success','Payment Method has success updated');
     }
 }

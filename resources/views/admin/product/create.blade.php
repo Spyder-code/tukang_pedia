@@ -11,7 +11,10 @@
                         @include('component.input',['input'=> Form::text('title',null,['class' => 'form-control']),'label'=> Form::label('Judul', 'Judul Layanan')])
                     </div>
                     <div class="col">
-                        @include('component.input',['input'=> Form::select('category_id',$category,1,['class' => 'form-control']),'label'=> Form::label('Kategori', 'Kategori')])
+                        @include('component.input',['input'=> Form::select('category',$category,1,['class' => 'form-control', 'id'=>'category']),'label'=> Form::label('Kategori', 'Kategori')])
+                    </div>
+                    <div class="col">
+                        @include('component.input',['input'=> Form::select('category_id',$sub_category,1,['class' => 'form-control', 'id' => 'sub']),'label'=> Form::label('Kategori', 'Sub Kategori')])
                     </div>
                 </div>
                 <div class="row">
@@ -60,12 +63,25 @@
             $('#regency').change(function (e) {
                 var val = $(this).val();
                 var url = {!! json_encode(url('api/district')) !!}+'/'+val;
-                console.log(val);
                 axios.get(url)
                     .then(function (response) {
                         console.log(response);
                         var data = response.data;
                         $('#district').html('');
+                        $.each(data, function (idx, item) {
+                            var html = '<option value="'+item.id+'">'+item.name+'</option>';
+                            $('#district').append(html);
+                        });
+                    })
+            });
+            $('#category').change(function (e) {
+                var val = $(this).val();
+                var url = {!! json_encode(url('api/category')) !!}+'/'+val;
+                axios.get(url)
+                    .then(function (response) {
+                        console.log(response);
+                        var data = response.data;
+                        $('#sub').html('');
                         $.each(data, function (idx, item) {
                             var html = '<option value="'+item.id+'">'+item.name+'</option>';
                             $('#district').append(html);

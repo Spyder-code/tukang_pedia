@@ -1,7 +1,7 @@
 @extends('layouts.admin')
-@section('page','TransactionDetail Management')
+@section('page','SubCategory Management')
 @section('breadcrumb')
-    <li><a href="#" class="fw-normal">TransactionDetail Management</a></li>
+    <li><a href="#" class="fw-normal">SubCategory Management</a></li>
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-6">
             <div class="white-box analytics-info">
-                <h3 class="box-title">Total TransactionDetail</h3>
+                <h3 class="box-title">Total SubCategory</h3>
                 <ul class="list-inline two-part d-flex align-items-center mb-0">
                     <li>
                         <div id="sparklinedash"><canvas width="67" height="30"
@@ -39,19 +39,16 @@
         <div class="col-md-12 col-lg-12 col-sm-12">
             <div class="white-box">
                 <div class="d-md-flex justify-content-between mb-3">
-                    <h3 class="box-title mb-0">List TransactionDetail</h3>
+                    <h3 class="box-title mb-0">List Sub Category</h3>
+                    <a href="{{ route('subcategory.create') }}" class="box-title mb-0 text-white btn btn-success">Create SubCategory</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table no-wrap data-table table-bordered">
                         <thead>
                             <tr>
                                 <th class="border">#</th>
-                                <th class="border">Kode</th>
-                                <th class="border">Total</th>
-                                <th class="border">Alamat Pemesanan</th>
-                                <th class="border">Tanggal Pesanan</th>
-                                <th class="border">Tanggal Kedatangan</th>
-                                <th class="border">Status</th>
+                                <th class="border">Category</th>
+                                <th class="border">Sub Category</th>
                                 <th class="border">Action</th>
                             </tr>
                         </thead>
@@ -59,19 +56,15 @@
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td class="txt-oflo">{{ $item->code }}</td>
-                                <td class="txt-oflo">{{ $item->total }}</td>
-                                <td class="txt-oflo">{{ $item->address }}</td>
-                                <td class="txt-oflo">{{ date('d F Y', strtotime($item->created_at)) }}</td>
-                                <td class="txt-oflo">{{ date('d F Y', strtotime($item->arrive)) }}</td>
-                                <td class="txt-oflo">{{ $item->status==0?'Belum bayar':'Lunas' }}</td>
+                                <td class="txt-oflo">{{ $item->category->name }}</td>
+                                <td class="txt-oflo">{{ $item->name }}</td>
                                 <td class="d-flex">
-                                    {{-- <a href="{{ route('transactiondetail.edit',$item) }}" class="btn btn-primary mx-1" title="Edit"><i class="fas fa-pencil-alt"></i></a> --}}
-                                    <a target="d_blank" href="{{ route('page.transaction.detail',$item)  }}" class="btn btn-warning mx-1" title="View"><i class="fas fa-eye"></i></a>
-                                    {{-- {!! Form::open(['route' => ['transactiondetail.destroy', $item], 'method' => 'delete']) !!}
+                                    <a href="{{ route('subcategory.edit',$item) }}" class="btn btn-primary mx-1" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{ route('subcategory.show',$item) }}" class="btn btn-warning mx-1" title="View"><i class="fas fa-eye"></i></a>
+                                    {!! Form::open(['route' => ['subcategory.destroy', $item], 'method' => 'delete']) !!}
                                         <button type="submit" onclick="return confirm('are you sure?')" class="btn btn-danger mx-1" title="Delete"><i class="fas fa-trash-alt text-white"></i></button>
                                     {!! Form::close() !!}
-                                </td> --}}
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

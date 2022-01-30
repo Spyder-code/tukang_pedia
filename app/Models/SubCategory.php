@@ -5,22 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mitra extends Model
+class SubCategory extends Model
 {
     use HasFactory;
 
+    protected $table = 'subcategories';
     protected $fillable = [
-        'user_id',
+        'category_id',
         'name',
-        'address',
-        'cv',
-        'avatar',
-        'file',
-        'skill',
     ];
 
-    public function user()
+    public function category()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Category::class);
     }
 }

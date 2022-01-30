@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\DataController;
 use App\Http\Controllers\Api\WilayahController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('regency/{province_id}',[WilayahController::class,'getRegency'])->name('get.regency');
 Route::get('district/{regency_id}',[WilayahController::class,'getDistrict'])->name('get.district');
+Route::get('category/{category_id}',[DataController::class,'getCategory'])->name('get.category');

@@ -14,16 +14,6 @@
                     @endforeach
                 </div>
             </div>
-            <div class="category mt-5 bg-white">
-                <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-xl font-bold">Wilayah</div>
-                <div class="flex flex-wrap justify-content-center">
-                    @foreach ($regency as $item)
-                    <a href="{{ route('page.product.wilayah', $item->id) }}" class="hover:bg-blue-300 px-3 py-1 text-white m-1 rounded-full bg-blue-500 text-center text-xs" style="font-size: 0.6rem">
-                        <span>{{ $item->name }}</span>
-                    </a>
-                    @endforeach
-                </div>
-            </div>
         </div>
         <div class="w-3/4">
             <div class="banner flex h-full" style="background-image: url('{{ asset('/') }}images/banner.png'); height: 418px;">

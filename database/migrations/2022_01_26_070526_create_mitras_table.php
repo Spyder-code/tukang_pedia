@@ -12,9 +12,11 @@ class CreateMitrasTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->string('name');
+            $table->text('skill');
             $table->text('address');
             $table->string('cv');
             $table->string('avatar');
+            $table->string('file');
             $table->timestamps();
         });
     }

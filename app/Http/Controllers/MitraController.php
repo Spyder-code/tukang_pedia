@@ -34,12 +34,14 @@ class MitraController extends Controller
     {
         $request->validate([
             'cv' => 'required|max:10000|mimes:pdf',
+            'file' => 'required|max:10000|mimes:pdf',
             'avatar' => 'required|max:10000|mimes:jpg,png,jpeg'
         ]);
 
         $data = $request->all();
         $data['user_id'] = Auth::id();
         $data['cv'] = $this->mitraService->insertFile($request->cv,Auth::id());
+        $data['file'] = $this->mitraService->insertFile($request->file,Auth::id());
         $data['avatar'] = $this->mitraService->insertFile($request->avatar,Auth::id());
         $this->mitraService->store($data);
         return redirect()->route('transaction.index')->with('success','Mitra has registered');
