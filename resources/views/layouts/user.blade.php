@@ -52,7 +52,10 @@
                 <h1 class="text-white text-4xl">TUKANGPEDIA</h1>
             </div>
             <div class="w-1/2 flex justify-center">
-                <input type="text" class="rounded-full px-3 bg-white h-10 w-72 my-auto focus:border-blue-100" placeholder="Search" >
+                <form action="{{ route('page.search') }}" method="post">
+                    @csrf
+                    <input type="text" class="rounded-full px-3 bg-white h-10 w-72 my-auto focus:border-blue-100" placeholder="Search" name="name">
+                </form>
             </div>
             <div class="w-2/4 text-left">
                 <img src="{{ asset('/') }}images/craftsman.png" class="h-20">

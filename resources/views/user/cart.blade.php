@@ -1,6 +1,11 @@
 @extends('layouts.user')
 @section('content')
     <main class="py-5 mx-10">
+        @if (session('danger'))
+        <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+            <span class="font-medium">{{ session('danger') }}</span>
+        </div>
+        @endif
         <div class="alamat rounded-3xl bg-white shadow-2xl px-10 py-5 flex mt-5">
             <table class="table-auto w-full">
                 <thead>

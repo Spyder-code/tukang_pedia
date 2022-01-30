@@ -36,6 +36,11 @@
                 </div>
                 @endforeach
             </div>
+            @if ($product->count() == 0)
+                <div class="product my-3 bg-white rounded-3xl shadow-2xl p-10">
+                    <p class="text-gray-400">Hasil pencarian tidak ditemukan</p>
+                </div>
+            @endif
         </div>
     </div>
 </main>

@@ -96,8 +96,13 @@ class PageController extends Controller
         return view('user.transaksi', compact('data'));
     }
 
-    public function invoice()
+    public function search(Request $request)
     {
-        return view('user.invoice');
+        $category = $this->categoryService->all();
+        $regency = $this->regencyService->all()->where('province_id',15)->sortBy(function($string) {
+            return strlen($string->name);
+        });
+        $product = Product::where('title','like','%'.$request->name.'%')->orWhere('description','like','%'.$request->name.'%')->get();
+        return view('user.home', compact('category','regency','product'));
     }
 }

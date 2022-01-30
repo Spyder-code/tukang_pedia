@@ -32,11 +32,15 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data['user_id'] = Auth::id();
-        $data['total'] = $request->qty * $request->price;
-        $this->cartService->store($data);
-        return redirect()->route('page.pesanan')->with('success','Cart has added');
+        if (Auth::check()) {
+            $data = $request->all();
+            $data['user_id'] = Auth::id();
+            $data['total'] = $request->qty * $request->price;
+            $this->cartService->store($data);
+            return redirect()->route('page.pesanan')->with('success','Cart has added');
+        }else{
+            return redirect()->route('page.account')->with('danger','Anda harus login terlebih dahulu');
+        }
     }
 
 

@@ -40,6 +40,9 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $cart = $this->cartService->all()->where('user_id', Auth::id());
+        if ($cart->count() == 0) {
+            return back()->with('danger','Anda harus membeli produk terlebih dahulu');
+        }
         $data = $request->all();
         $data['code'] = 'TRX'.time().Auth::id();
         $data['status'] = 0;

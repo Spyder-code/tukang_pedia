@@ -21,7 +21,7 @@ Route::get('/account', [PageController::class,'account'])->name('page.account');
 Route::get('/register-mitra', [PageController::class,'registerMitra'])->name('page.register.mitra');
 Route::get('/pesanan', [PageController::class,'cart'])->name('page.pesanan');
 Route::get('/transaksi-saya', [PageController::class,'transaksi'])->name('page.transaksi');
-Route::get('/invoice', [PageController::class,'invoice'])->name('page.invoice');
+Route::post('/search', [PageController::class,'search'])->name('page.search');
 Route::get('/product-wilayah/{id}', [PageController::class,'product_wilayah'])->name('page.product.wilayah');
 Route::get('/product-category/{id}', [PageController::class,'product_category'])->name('page.product.category');
 Route::get('/product-detail/{product}', [PageController::class,'detail_product'])->name('page.product.detail');

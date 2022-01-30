@@ -25,7 +25,7 @@
                         <span class="font-bold text-lg">Kuantitas</span>
                     </div>
                     <div class="w-3/4">
-                        <input type="number" name="qty" min="1" max="{{ $product->stock }}" class="w-full rounded-lg border border-blue-400 py-2 px-5"> <span>Tersedia : {{ $product->stock }} Orang</span>
+                        <input type="number" required name="qty" min="1" max="{{ $product->stock }}" class="w-full rounded-lg border border-blue-400 py-2 px-5"> <span>Tersedia : {{ $product->stock }} Orang</span>
                     </div>
                 </div>
                 <div class="flex mt-5 mr-5">
