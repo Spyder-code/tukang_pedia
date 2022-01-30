@@ -1,6 +1,6 @@
 @extends('layouts.user')
 @section('content')
-<main class="px-10 py-5">
+<main class="px-3 md:px-10 py-5">
     <div class="text-gray-400">HOME / MITRA REGISTRATION</div>
     <div class="py-20 px-10 bg-white shadow-2xl rounded border-t border-blue-200 mt-5">
         @if ($errors->any())

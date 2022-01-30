@@ -1,8 +1,8 @@
 @extends('layouts.user')
 @section('content')
-<main class="px-32 py-5">
-    <div class="flex">
-        <div class="w-1/4 px-5">
+<main class="px-2 md:px-32 py-5">
+    <div class="flex flex-col md:flex-row">
+        <div class="w-100 md:w-1/4 px-5">
             <div class="category my-3 bg-white">
                 <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-2xl font-bold">Categories</div>
                 <div class="">
@@ -28,9 +28,9 @@
                 </div>
             </div>
         </div>
-        <div class="w-3/4">
+        <div class="w-100 md:w-3/4">
             @if ($product->count()>0)
-            <div class="product my-3 bg-white grid grid-cols-4 rounded-3xl shadow-2xl">
+            <div class="product my-3 bg-white grid grid-cols-2 md:grid-cols-4 rounded-3xl shadow-2xl">
                 @foreach ($product as $item)
                 <div class="my-4 text-center">
                     <div class="flex justify-center">

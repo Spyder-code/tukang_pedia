@@ -17,7 +17,7 @@
             <span class="font-medium">{{ session('danger') }}</span>
         </div>
         @endif
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-1 md:grid-cols-2">
             <div class="mx-5">
                 <h2 class="text-blue-600 text-3xl font-bold">Sign In</h2>
                 <hr>

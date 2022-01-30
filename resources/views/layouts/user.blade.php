@@ -15,21 +15,22 @@
     <header class="bg-blue-500 rounded-b-3xl">
         <div class="flex justify-between border-b border-white">
             <nav class="flex justify-center text-white ml-10 py-2">
-                <a class="mr-10 mt-1" href="{{ route('home') }}">Seller Center</a>
-                <p class="mr-5 mt-1">Follow us</p>
-                <span class="text-xl mx-2"><i class="fab fa-instagram"></i></span>
-                <span class="text-xl mx-2"><i class="fab fa-facebook"></i></span>
-                <span class="text-xl mx-2"><i class="fab fa-twitter"></i></span>
-                <span class="text-xl mx-2"><i class="fab fa-telegram"></i></span>
+                <a class="text-xs md:text-md mr-10 mt-1" href="{{ route('home') }}">Seller Center</a>
+                <p class="text-xs md:text-md mr-5 mt-1">Follow us</p>
+                <span class="text-xs md:text-xl mx-2"><i class="fab fa-instagram"></i></span>
+                <span class="text-xs md:text-xl mx-2"><i class="fab fa-facebook"></i></span>
+                <span class="text-xs md:text-xl mx-2"><i class="fab fa-twitter"></i></span>
+                <span class="text-xs md:text-xl mx-2"><i class="fab fa-telegram"></i></span>
             </nav>
             <nav class="flex justify-center text-white ml-10 py-2">
-                <a class="mr-10 mt-1 text-white" href="">Bantuan</a>
+                {{-- <a class="text-xs mr-10 mt-1 text-white" href="">Bantuan</a> --}}
                 <!-- This example requires Tailwind CSS v2.0+ -->
                 @if (Auth::check())
                 <div x-data="{dropdownMenu: false}" class="relative">
                     <!-- Dropdown toggle button -->
                     <button @click="dropdownMenu = ! dropdownMenu" class="flex items-center mt-1">
-                        <span class="mr-4">{{ Auth::user()->name }}</span>
+                        <span class="mr-4 hidden md:block">{{ Auth::user()->name }}</span>
+                        <span class="mr-4 block md:hidden text-xs"><i class="fas fa-list"></i></span>
                     </button>
                     <!-- Dropdown list -->
                     <div x-show="dropdownMenu" class="absolute right-0 py-2 mt-2 bg-white bg-gray-100 rounded-md shadow-xl w-44">
@@ -47,27 +48,26 @@
                 @endif
             </nav>
         </div>
-        <div class="py-10 flex justify-center border-b border-white">
-            <div class="w-2/4 text-right my-auto">
+        <div class="py-10 flex flex-col md:flex-row items-center justify-center border-b border-white">
+            <div class="w-2/4 text-center my-auto mt-3">
                 <h1 class="text-white text-4xl">TUKANGPEDIA</h1>
             </div>
-            <div class="w-1/2 flex justify-center">
+            <div class="w-1/2 flex justify-center mt-3">
                 <form action="{{ route('page.search') }}" method="post">
                     @csrf
                     <input type="text" class="rounded-full px-3 bg-white h-10 w-72 my-auto focus:border-blue-100" placeholder="Search" name="name">
                 </form>
             </div>
-            <div class="w-2/4 text-left">
+            <div class="w-2/4 text-left mt-3 hidden md:block">
                 <img src="{{ asset('/') }}images/craftsman.png" class="h-20">
             </div>
         </div>
-        <nav class="flex ml-28 gap-10 py-3">
-            <a class="text-white text-xl hover:text-blue-900" href="{{ route('page.home') }}">Home</a>
-            <a class="text-white text-xl hover:text-blue-900" href="{{ route('home') }}">Mitra</a>
-            <a class="text-white text-xl hover:text-blue-900" href="">Download App</a>
-            {{-- <a class="text-white text-xl hover:text-blue-900" href="">Paket borongan</a> --}}
-            <a class="text-white text-xl hover:text-blue-900" href="{{ route('page.pesanan') }}">Pesanan <sup>{{ Auth::check()?Auth::user()->cart->count():'' }}</sup></a>
-            <a class="text-white text-xl hover:text-blue-900" href="{{ route('page.transaksi') }}">Transaksi Saya</a>
+        <nav class="flex ml-7 md:ml-28 gap-5 md:gap-10 py-3">
+            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('page.home') }}">Home</a>
+            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('home') }}">Mitra</a>
+            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="">Download App</a>
+            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('page.pesanan') }}">Pesanan <sup>{{ Auth::check()?Auth::user()->cart->count():'' }}</sup></a>
+            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('page.transaksi') }}">Transaksi Saya</a>
         </nav>
     </header>
 

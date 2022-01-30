@@ -1,7 +1,7 @@
 @extends('layouts.user')
 @section('content')
 <main class="py-5">
-    <div class="mx-20 my-3 bg-white rounded-3xl shadow-2xl p-3">
+    <div class="mx-2 md:mx-20 my-3 bg-white rounded-3xl shadow-2xl p-3">
         @if (session('success'))
         <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
             <span class="font-medium">{{ session('success') }}</span>

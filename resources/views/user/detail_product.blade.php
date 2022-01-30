@@ -1,14 +1,14 @@
 @extends('layouts.user')
 @section('content')
-<main class="py-5">
-    <form action="{{ route('cart.store') }}" method="post" class="mx-20 flex my-3 bg-white rounded-3xl shadow-2xl">
+<main class="py-1 md:py-5">
+    <form action="{{ route('cart.store') }}" method="post" class="md-2 md:mx-20 flex flex-col md:flex-row my-3 bg-white rounded-3xl shadow-2xl">
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <input type="hidden" name="price" value="{{ $product->price }}">
         <div class="w-1/2 m-10 flex justify-center">
             <img src="{{ $product->image }}" alt="">
         </div>
-        <div class="w-3/4">
+        <div class="w-3/4 ml-4 md:ml-1">
             <div class="my-4">
                 <p class="text-3xl font-bold">{{ $product->title }}</p>
                 <p class="mb-2 text-2xl border-b-2 border-blue-400">Rp. {{ number_format($product->price,2,',','.') }}</p>
@@ -16,7 +16,7 @@
                     <div class="w-1/4">
                         <span class="font-bold text-lg">Daerah</span>
                     </div>
-                    <div class="w-3/4">
+                    <div class="w-3/4 ml-8 md:ml-1">
                         <i class=" fas fa-car"></i> {{ $product->district->name }} {{ $product->regency->name }}, {{ $product->province->name }}
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                     <div class="w-1/4">
                         <span class="font-bold text-lg">Kuantitas</span>
                     </div>
-                    <div class="w-3/4">
+                    <div class="w-3/4 ml-8 md:ml-1">
                         <input type="number" required name="qty" min="1" max="{{ $product->stock }}" class="w-full rounded-lg border border-blue-400 py-2 px-5"> <span>Tersedia : {{ $product->stock }} Orang</span>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     <div class="w-1/4">
                         <span class="font-bold text-lg">Deskripsi</span>
                     </div>
-                    <div class="w-3/4">
+                    <div class="w-3/4 ml-8 md:ml-1">
                         <p>{{ $product->description }}</p>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <div class="w-1/4">
                         <span class="font-bold text-lg">Profile</span>
                     </div>
-                    <div class="w-3/4">
+                    <div class="w-3/4 ml-8 md:ml-1">
                         <table class="table-auto">
                             <tbody>
                                 <tr>

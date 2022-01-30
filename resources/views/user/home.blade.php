@@ -1,8 +1,8 @@
 @extends('layouts.user')
 @section('content')
-<main class="px-32 py-5">
-    <div class="flex">
-        <div class="w-1/4 px-5">
+<main class="px-2 md:px-32 py-5">
+    <div class="flex flex-col md:flex-row">
+        <div class="w-100 md:w-1/4 px-5">
             <div class="category my-3 bg-white">
                 <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-xl font-bold">Categories</div>
                 <div class="">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-3/4">
+        <div class="w-100 md:w-3/4">
             <div class="banner flex h-full" style="background-image: url('{{ asset('/') }}images/banner.png'); height: 418px;">
                 <div class="my-auto ml-20">
                     <span class="text-gray-400">TOP STARTUP</span>
@@ -24,7 +24,7 @@
                     <a href="" class="px-5 py-2 bg-blue-600 rounded-full text-lg text-white font-bold">Download App</a>
                 </div>
             </div>
-            <div class="product my-3 bg-white grid grid-cols-4">
+            <div class="product my-3 bg-white grid grid-cols-2 md:grid-cols-4">
                 @foreach ($product as $item)
                 <div class="my-4 text-center">
                     <div class="flex justify-center">

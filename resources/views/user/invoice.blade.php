@@ -12,7 +12,7 @@
         <span class="font-medium">{{ session('success') }}</span>
     </div>
     @endif
-    <div class="w-3/5 bg-white shadow-lg">
+    <div class="overflow-x-auto w-full md:w-3/5 bg-white shadow-lg mx-2">
         <div class="flex justify-between p-4">
             <div>
                 <h1 class="text-3xl italic font-extrabold tracking-widest text-indigo-500">Tukang Pedia</h1>

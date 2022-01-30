@@ -6,7 +6,7 @@
             <span class="font-medium">{{ session('danger') }}</span>
         </div>
         @endif
-        <div class="alamat rounded-3xl bg-white shadow-2xl px-10 py-5 flex mt-5">
+        <div class="alamat rounded-3xl bg-white shadow-2xl px-10 py-5 flex mt-5 overflow-x-auto w-full">
             <table class="table-auto w-full">
                 <thead>
                     <tr>
