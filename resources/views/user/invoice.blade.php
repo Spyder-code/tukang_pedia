@@ -124,17 +124,95 @@
         @if ($detailTransaction->status==0)
         <div class="p-4 grid grid-cols-2">
             <div class="">
-                <p>Harap lakukan pembayaran pada:</p><br>
-                <img src="{{ asset('images/QRCode.png') }}" alt="Code" style="height:200px; width:200px;">
+                @if ($detailTransaction->payment_method=='Transfer Bank')
+                <p>Pilih bank tujuan:</p><br>
+                    <fieldset>
+                        <legend class="sr-only">Bank</legend>
+
+                        <div class="flex items-center mb-4">
+                            <input id="bank-option-1" type="radio" name="bank" checked value="bri" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" aria-labelledby="bank-option-1" aria-describedby="bank-option-1" checked>
+                            <label for="bank-option-1" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                <img src="{{ asset('images/bri.png') }}" class=" h-10">  BRI (Bank Rakyat Indonesia)
+                            </label>
+                        </div>
+
+                        <div class="flex items-center mb-4">
+                            <input id="bank-option-2" type="radio" name="bank" value="bni" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" aria-labelledby="bank-option-2" aria-describedby="bank-option-2">
+                            <label for="bank-option-2" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                <img src="{{ asset('images/bni.png') }}" class=" h-10"> BNI (Bank Negara Indonesia)
+                            </label>
+                        </div>
+
+                        <div class="flex items-center mb-4">
+                            <input id="bank-option-3" type="radio" name="bank" value="mandiri" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-600" aria-labelledby="bank-option-3" aria-describedby="bank-option-3">
+                            <label for="bank-option-3" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                <img src="{{ asset('images/mandiri.png') }}" class=" h-10"> Mandiri (Bank Mandiri)
+                            </label>
+                        </div>
+
+                        <div class="flex items-center mb-4">
+                            <input id="bank-option-4" type="radio" name="bank" value="bca" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring:blue-300 dark:focus-ring-blue-600 dark:bg-gray-700 dark:border-gray-600" aria-labelledby="bank-option-4" aria-describedby="bank-option-4">
+                            <label for="bank-option-4" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                <img src="{{ asset('images/bca.png') }}" class=" h-10"> BCA (Bank Central Asia)
+                            </label>
+                        </div>
+                    </fieldset>
+                @else
+                <p>Pilih E-Monney tujuan:</p><br>
+                <fieldset>
+                    <legend class="sr-only">E-Monney</legend>
+
+                    <div class="flex items-center mb-4">
+                        <input id="bank-option-1" type="radio" name="bank" value="ovo" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" aria-labelledby="bank-option-1" aria-describedby="bank-option-1" checked>
+                        <label for="bank-option-1" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                            <img src="{{ asset('images/ovo.png') }}" class=" h-10">  OVO (OVO)
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="bank-option-2" type="radio" name="bank" value="gopay" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" aria-labelledby="bank-option-2" aria-describedby="bank-option-2">
+                        <label for="bank-option-2" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                            <img src="{{ asset('images/gopay1.png') }}" class=" h-10"> Gopay (Gopay)
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="bank-option-3" type="radio" name="bank" value="dana" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-600" aria-labelledby="bank-option-3" aria-describedby="bank-option-3">
+                        <label for="bank-option-3" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                            <img src="{{ asset('images/dana.jpg') }}" class=" h-10"> Dana (Dana)
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="bank-option-4" type="radio" name="bank" value="shopee" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring:blue-300 dark:focus-ring-blue-600 dark:bg-gray-700 dark:border-gray-600" aria-labelledby="bank-option-4" aria-describedby="bank-option-4">
+                        <label for="bank-option-4" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                            <img src="{{ asset('images/shopee.png') }}" class=" h-10"> ShopeePay (Shopeepay)
+                        </label>
+                    </div>
+                </fieldset>
+                @endif
             </div>
             <div class="">
                 <h3 class="text-xl">Cara Pembayaran:</h3>
+                @if ($detailTransaction->payment_method == 'Transfer Bank')
+                <ol class="text-xs list-disc list-inside">
+                    <li>Masukkan kartu ATM ke mesin ATM Bank</li>
+                    <li>Masukkan PIN</li>
+                    <li>Pilih Menu Transfer</li>
+                    <li>Masukkan kode Bank <b id="kode-bank">(002)</b> dan nomor rekening tujuan <b id="no-rek">(8850701408)</b></li>
+                    <li>Periksa kembali, apakah nomor rekening sudah sesuai dengan nama "Tukang Pedia Official"</li>
+                    <li>Jika sudah melakukan pembayaran, Klik tombol "Konfirmasi Pembayaran" dibawah</li>
+                </ol>
+                @else
                 <ol class="text-xs list-disc list-inside">
                     <li>Buka aplikasi E-Money</li>
                     <li>Pilih menu bayar</li>
-                    <li>Scan QRCode disamping</li>
+                    <li>Scan QRCode dibawah</li>
+                    <li>Transfer uang sesuai faktur pembayaran diatas</li>
                     <li>Jika sudah melakukan pembayaran, Klik tombol "Konfirmasi Pembayaran" dibawah</li>
                 </ol>
+                <img src="{{ asset('images/QRCode.png') }}" class="h-36 mt-3">
+                @endif
                 <br>
                 <hr>
                 <form action="{{ route('transactiondetail.update',$detailTransaction) }}" method="POST" class="mt-2" id="form1" name="form1">
@@ -162,5 +240,26 @@
             $('#form1').submit();
         }, 5000);
     });
+
+    $('input[type=radio][name=bank]').change(function() {
+    if (this.value == 'bni') {
+        var kode = '(009)';
+        var norek = '(145635789)'
+    }
+    else if (this.value == 'bri') {
+        var kode = '(002)';
+        var norek = '(12133214)'
+    }
+    else if (this.value == 'bca') {
+        var kode = '(003)';
+        var norek = '(36694178)'
+    }
+    else if (this.value == 'mandiri') {
+        var kode = '(008)';
+        var norek = '(14523432)'
+    }
+    $('#kode-bank').html(kode);
+    $('#no-rek').html(norek);
+});
 </script>
 @endsection
