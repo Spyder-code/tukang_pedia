@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use App\Repositories\TransactionDetailService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionDetailController extends Controller
 {
@@ -18,7 +20,12 @@ class TransactionDetailController extends Controller
 
     public function index()
     {
-        $data = $this->transactiondetailService->all();
+        $data = Transaction::join('transaction_details', 'transactions.transaction_detail_id', '=', 'transaction_details.id')
+            ->join('products', 'transactions.product_id', '=', 'products.id')
+            ->join('users', 'products.user_id', '=', 'users.id')
+            ->where('products.user_id', Auth::id())
+            ->select('transaction_details.*')
+            ->get();
         return view('admin.transactiondetail.index', compact('data'));
     }
 

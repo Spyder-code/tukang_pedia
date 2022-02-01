@@ -44,12 +44,12 @@ class TransactionController extends Controller
             return back()->with('danger','Anda harus membeli produk terlebih dahulu');
         }
         $data = $request->all();
-        $data['code'] = 'TRX'.time().Auth::id();
+        foreach ($cart as $item ) {
+        $data['code'] = 'TRX'.rand(11111,999999).Auth::id();
         $data['status'] = 0;
-        $data['total'] = $cart->sum('total');
+        $data['total'] = $item->total;
         $data['user_id'] = Auth::id();
         $transaction = $this->transactionDetailService->store($data);
-        foreach ($cart as $item ) {
             $item_transaction = array();
             $item_transaction['user_id'] = $item->user_id;
             $item_transaction['product_id'] = $item->product_id;
