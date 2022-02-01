@@ -49,6 +49,7 @@ class TransactionController extends Controller
         $data['status'] = 0;
         $data['total'] = $item->total;
         $data['user_id'] = Auth::id();
+        $data['seller_id'] = $item->product->user_id;
         $transaction = $this->transactionDetailService->store($data);
             $item_transaction = array();
             $item_transaction['user_id'] = $item->user_id;

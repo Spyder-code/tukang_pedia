@@ -6,12 +6,12 @@
         <p class="text-2xl text-center relative" style="top: -200px">Checking Payment</p>
     </div>
 </div>
+@if (session('success'))
+<div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+    <span class="font-medium">{{ session('success') }}</span>
+</div>
+@endif
 <div id="detail" class="flex items-center justify-center min-h-screen bg-gray-100 py-5">
-    @if (session('success'))
-    <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-        <span class="font-medium">{{ session('success') }}</span>
-    </div>
-    @endif
     <div class="overflow-x-auto w-full md:w-3/5 bg-white shadow-lg mx-2">
         <div class="flex justify-between p-4">
             <div>
@@ -121,7 +121,7 @@
         </div>
         <div class="w-full h-0.5 bg-indigo-500"></div>
 
-        @if ($detailTransaction->status==0)
+        @if ($detailTransaction->status==0 && Auth::id()==$detailTransaction->user_id)
         <div class="p-4 grid grid-cols-2">
             <div class="">
                 @if ($detailTransaction->payment_method=='Transfer Bank')

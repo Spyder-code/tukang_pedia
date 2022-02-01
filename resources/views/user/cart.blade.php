@@ -23,9 +23,9 @@
                     @foreach ($cart as $item)
                     <tr class="border-b-2 border-blue-300 mt-3">
                         <td class="flex">
-                            <img src="{{ $item->product->image }}" class="my-3 h-32">
+                            <img src="{{ $item->product->image }}" class="my-3 h-32 w-48">
                             <div class="my-auto ml-5">
-                                <p class="text-2xl text-gray-400">{{ $item->product->name }}</p>
+                                <p class="text-2xl text-gray-400">{{ $item->product->title }}</p>
                                 <p class="font-bold">{{ $item->product->user->mitra->name }}</p>
                             </div>
                         </td>

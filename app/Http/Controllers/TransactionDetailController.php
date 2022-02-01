@@ -20,12 +20,7 @@ class TransactionDetailController extends Controller
 
     public function index()
     {
-        $data = Transaction::join('transaction_details', 'transactions.transaction_detail_id', '=', 'transaction_details.id')
-            ->join('products', 'transactions.product_id', '=', 'products.id')
-            ->join('users', 'products.user_id', '=', 'users.id')
-            ->where('products.user_id', Auth::id())
-            ->select('transaction_details.*')
-            ->get();
+        $data = $this->transactiondetailService->all()->where('seller_id', Auth::id());
         return view('admin.transactiondetail.index', compact('data'));
     }
 
@@ -58,7 +53,11 @@ class TransactionDetailController extends Controller
     public function update(Request $request, TransactionDetail $transactiondetail)
     {
         $this->transactiondetailService->update($request->all(),$transactiondetail->id);
-        return back()->with('success','TransactionDetail has success updated');
+        if ($request->status==1) {
+            return back()->with('success','Pembayaran Berhasil');
+        }else{
+            return back()->with('success','Transaction has success updated');
+        }
     }
 
 
