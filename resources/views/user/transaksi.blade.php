@@ -59,7 +59,7 @@
                                         {{ date('d F Y', strtotime($item->arrive)) }}
                                     </td>
                                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $item->status==0?'Belum dibayar':'Lunas' }}
+                                        {{ $item->status==0?'Belum bayar':($item->status==1?'Lunas':'Terkonfirmasi') }}
                                     </td>
                                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                         <form action="{{ route('update.payment',$item->id) }}" method="post">

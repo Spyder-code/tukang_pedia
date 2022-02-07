@@ -34,9 +34,13 @@ class HomeController extends Controller
 
     public function main()
     {
-        $visitor = Visitor::all();
-        $user = User::all();
-        return view('admin.main',compact('visitor','user'));
+        if (Auth::id()==1) {
+            $visitor = Visitor::all();
+            $user = User::all();
+            return view('admin.main',compact('visitor','user'));
+        }else{
+            return redirect()->route('transactiondetail.index');
+        }
     }
 
     public function profile()

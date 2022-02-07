@@ -24,14 +24,14 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Muhammad Aziz Almi',
-            'username' => 'almi',
-            'email' => 'admin@yahoo.com',
+            'name' => $this->faker->name(),
+            'username' => $this->faker->userName(),
+            'email' => $this->faker->email(),
             'email_verified_at' => now(),
-            'password' => Hash::make('admin123'), // password
+            'password' => Hash::make('password'), // password
             'remember_token' => Str::random(10),
             'avatar' => '/storage/user/default.png',
-            'phone' => '083857317946',
+            'phone' => $this->faker->phoneNumber(),
         ];
     }
 

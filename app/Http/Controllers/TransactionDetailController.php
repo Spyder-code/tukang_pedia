@@ -55,6 +55,8 @@ class TransactionDetailController extends Controller
         $this->transactiondetailService->update($request->all(),$transactiondetail->id);
         if ($request->status==1) {
             return back()->with('success','Pembayaran Berhasil');
+        }elseif($request->status==2){
+            return back()->with('success','Transaksi berhasil dikonfirmasi');
         }else{
             return back()->with('success','Transaction has success updated');
         }

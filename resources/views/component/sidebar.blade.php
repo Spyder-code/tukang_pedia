@@ -1,3 +1,4 @@
+@if (Auth::id()==1)
 <li class="sidebar-item pt-2">
     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('home') }}"
         aria-expanded="false">
@@ -5,6 +6,7 @@
         <span class="hide-menu">Dashboard</span>
     </a>
 </li>
+@endif
 <li class="sidebar-item">
     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('profile') }}"
         aria-expanded="false">

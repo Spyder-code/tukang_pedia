@@ -6,6 +6,15 @@
 
 @section('content')
 <div class="container-fluid">
+    @if (session('success'))
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-6">
             <div class="white-box analytics-info">
@@ -64,7 +73,7 @@
                                 <td class="txt-oflo">{{ $item->address }}</td>
                                 <td class="txt-oflo">{{ date('d F Y', strtotime($item->created_at)) }}</td>
                                 <td class="txt-oflo">{{ date('d F Y', strtotime($item->arrive)) }}</td>
-                                <td class="txt-oflo">{{ $item->status==0?'Belum bayar':'Lunas' }}</td>
+                                <td class="txt-oflo">{{ $item->status==0?'Belum bayar':($item->status==1?'Lunas':'Terkonfirmasi') }}</td>
                                 <td class="d-flex">
                                     {{-- <a href="{{ route('transactiondetail.edit',$item) }}" class="btn btn-primary mx-1" title="Edit"><i class="fas fa-pencil-alt"></i></a> --}}
                                     <a target="d_blank" href="{{ route('page.transaction.detail',$item)  }}" class="btn btn-warning mx-1" title="View"><i class="fas fa-eye"></i></a>
@@ -72,6 +81,14 @@
                                         <button type="submit" onclick="return confirm('are you sure?')" class="btn btn-danger mx-1" title="Delete"><i class="fas fa-trash-alt text-white"></i></button>
                                     {!! Form::close() !!}
                                 </td> --}}
+                                @if ($item->status==1)
+                                <form action="{{ route('transactiondetail.update',$item) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <input type="hidden" name="status" value="2">
+                                    <button type="submit" onclick="return confirm('Konfirmasi pesanan?')" class="btn btn-success mx-1 text-white"><i class="fas fa-truck"></i></button>
+                                </form>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
