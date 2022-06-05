@@ -43,7 +43,7 @@
         <!-- Column -->
         <div class="col-lg-4 col-xlg-3 col-md-12">
             <div class="white-box">
-                <div class="user-bg"> <img width="100%" alt="user" src="{{ asset('images/bg-profile.jpg') }}">
+                <div class="user-bg"> <img width="100%" alt="user" src="{{ asset('logo.png') }}">
                     <div class="overlay-box">
                         <form action="{{ route('profile.update.image',['id'=>Auth::id()]) }}" method="post" enctype="multipart/form-data">
                             @csrf

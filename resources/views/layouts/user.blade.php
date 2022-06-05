@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/noty.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mint.css') }}">
     <script src="{{ asset('fontawesome-free-5.15.4-web/js/all.js') }}"></script>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('logo-icon.png') }}">
     <title>Tukang Pedia</title>
 </head>
 <body class="bg-gray-200">
@@ -103,7 +104,7 @@
             <div class="mt-16 border-t-2 border-gray-300 flex flex-col items-center">
                 <div class="sm:w-2/3 text-center py-6">
                     <p class="text-sm text-white font-bold mb-2">
-                        © 2022 Spydercode
+                        © 2022 Tukang Pedia
                     </p>
                 </div>
             </div>

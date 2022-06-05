@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow">
-    <title>Spydercode Admin Dashboard</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo-icon.png') }}">
+    <title>Tukang Pedia Admin Dashboard</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('logo-icon.png') }}">
     <link href="{{ asset('dashboard') }}/css/style.min.css" rel="stylesheet">
     <link href="{{ asset('dashboard') }}/css/datatable.css" rel="stylesheet">
     @yield('style')
@@ -29,10 +29,10 @@
                     <div class="navbar-header" data-logobg="skin6">
                         <a class="navbar-brand" style="margin-left:10px" href="{{route('home')}}">
                             <b class="logo-icon">
-                                <img src="{{ asset('/images') }}/logo-icon.png" alt="homepage" />
+                                <img src="{{ asset('logo-icon.png') }}" style="max-height: 40px" alt="homepage" />
                             </b>
                             <span class="logo-text">
-                                <img src="{{ asset('/images') }}/logo-text.png" alt="homepage" />
+                                <img src="{{ asset('logo-text.png') }}" style="max-height: 40px" alt="homepage" />
                             </span>
                         </a>
                         <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
@@ -56,7 +56,7 @@
                             </li>
                             <li>
                                 <a class="profile-pic" href="#">
-                                    <img src="{{ Auth::user()->avatar }}" alt="user-img" width="36"
+                                    <img src="{{ asset('logo-icon.png') }}" alt="user-img" width="36"
                                         class="img-circle"><span class="text-white font-medium">{{ Auth::user()->name }}</span></a>
                             </li>
                         </ul>
@@ -107,7 +107,7 @@
 
             </div>
 
-            <footer class="footer text-center"> 2021 © Spydercode
+            <footer class="footer text-center"> 2022 © Tukang Pedia
             </footer>
         </div>
     </div>
