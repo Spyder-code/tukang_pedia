@@ -65,11 +65,11 @@
                                 <td class="txt-oflo text-center"><a href="{{ $item->cv }}" class="btn btn-sm btn-success"><i class="fas fa-download"></i></a></td>
                                 <td class="txt-oflo text-center"><img src="{{ $item->avatar }}" class="img-fluid" style="height: 50px"></td>
                                 <td class="d-flex">
-                                    <a href="{{ route('mitra.edit',$item) }}" class="btn btn-primary mx-1" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                    {{-- <a href="{{ route('mitra.edit',$item) }}" class="btn btn-primary mx-1" title="Edit"><i class="fas fa-pencil-alt"></i></a> --}}
                                     <a href="{{ route('mitra.show',$item) }}" class="btn btn-warning mx-1" title="View"><i class="fas fa-eye"></i></a>
-                                    {!! Form::open(['route' => ['mitra.destroy', $item], 'method' => 'delete']) !!}
+                                    {{-- {!! Form::open(['route' => ['mitra.destroy', $item], 'method' => 'delete']) !!}
                                         <button type="submit" onclick="return confirm('are you sure?')" class="btn btn-danger mx-1" title="Delete"><i class="fas fa-trash-alt text-white"></i></button>
-                                    {!! Form::close() !!}
+                                    {!! Form::close() !!} --}}
                                 </td>
                             </tr>
                             @endforeach

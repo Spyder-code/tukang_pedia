@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mitra;
+use App\Models\User;
 use App\Repositories\MitraService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +39,11 @@ class MitraController extends Controller
             'avatar' => 'required|max:10000|mimes:jpg,png,jpeg'
         ]);
 
+        $user = User::find(Auth::id());
+        $user->update($request->user);
+
         $data = $request->all();
+        unset($data['user']);
         $data['user_id'] = Auth::id();
         $data['cv'] = $this->mitraService->insertFile($request->cv,Auth::id());
         $data['file'] = $this->mitraService->insertFile($request->file,Auth::id());

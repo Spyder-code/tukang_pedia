@@ -11,7 +11,13 @@ class Mitra extends Model
 
     protected $fillable = [
         'user_id',
+        'type',
         'name',
+        'nik',
+        'npwp',
+        'provinsi',
+        'kabupaten',
+        'kecamatan',
         'address',
         'cv',
         'avatar',

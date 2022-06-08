@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Province;
 use App\Models\TransactionDetail;
 use App\Repositories\CartService;
 use App\Repositories\CategoryService;
@@ -87,7 +88,8 @@ class PageController extends Controller
     public function registerMitra()
     {
         $category = $this->categoryService->all();
-        return view('user.mitra', compact('category'));
+        $provinsi = Province::all();
+        return view('user.mitra', compact('category','provinsi'));
     }
 
     public function transaksi()
