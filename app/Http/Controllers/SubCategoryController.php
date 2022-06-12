@@ -35,7 +35,11 @@ class SubCategoryController extends Controller
 
     public function store(Request $request)
     {
-        $this->subcategoryService->store($request->all());
+        $data = $request->validate([
+            'name' => 'required',
+            'category_id' => 'required'
+        ]);
+        $this->subcategoryService->store($data);
         return redirect()->route('subcategory.index')->with('success','SubCategory has success created');
     }
 

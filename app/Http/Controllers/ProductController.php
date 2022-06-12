@@ -49,8 +49,18 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'title' => 'required',
+            'category' => 'required',
+            'category_id' => 'required',
+            'regency_id' => 'required',
+            'district_id' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'image' => 'required',
+            'description' => 'required',
+        ]);
         $image = $this->regencyService->insertFile($request->image,'product', '.png');
-        $data = $request->all();
         $data['province_id'] = 15;
         $data['user_id'] = Auth::id();
         $data['image'] = $image;
@@ -70,13 +80,30 @@ class ProductController extends Controller
     {
         $category = $this->categoryService->select();
         $province = $this->regencyService->select();
-        return view('admin.product.edit', compact('product','category','province'));
+        $sub = $product->category->pluck('name','id');
+        return view('admin.product.edit', compact('product','category','province','sub'));
     }
 
 
     public function update(Request $request, Product $product)
     {
-        $this->productService->update($request->all(),$product->id);
+        $data = $request->validate([
+            'title' => 'required',
+            'category' => 'required',
+            'category_id' => 'required',
+            'regency_id' => 'required',
+            'district_id' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'image' => 'nullable',
+            'description' => 'required',
+        ]);
+
+        if($request->image){
+            $image = $this->regencyService->insertFile($request->image,'product', '.png');
+            $data['image'] = $image;
+        }
+        $this->productService->update($data,$product->id);
         return redirect()->route('product.index')->with('success','Product has success updated');
     }
 

@@ -6,6 +6,16 @@
             <span class="font-medium">{{ session('danger') }}</span>
         </div>
         @endif
+        {{-- error validation --}}
+        @if ($errors->any())
+        <div class="bg-red-200 px-10 py-4 mb-5">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="alamat rounded-3xl bg-white shadow-2xl px-10 py-5 flex mt-5 overflow-x-auto w-full">
             <table class="table-auto w-full">
                 <thead>

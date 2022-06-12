@@ -39,11 +39,15 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'arrive' => 'required',
+            'address' => 'required',
+            'payment_method' => 'required',
+        ]);
         $cart = $this->cartService->all()->where('user_id', Auth::id());
         if ($cart->count() == 0) {
             return back()->with('danger','Anda harus membeli produk terlebih dahulu');
         }
-        $data = $request->all();
         foreach ($cart as $item ) {
         $data['code'] = 'TRX'.rand(11111,999999).Auth::id();
         $data['status'] = 0;

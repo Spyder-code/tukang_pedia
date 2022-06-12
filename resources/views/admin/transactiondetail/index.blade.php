@@ -57,9 +57,11 @@
                                 <th class="border">#</th>
                                 <th class="border">Kode</th>
                                 <th class="border">Total</th>
-                                <th class="border">Alamat Pemesanan</th>
-                                <th class="border">Tanggal Pesanan</th>
-                                <th class="border">Tanggal Kedatangan</th>
+                                @if (!$is_confirm)
+                                    <th class="border">Alamat Pemesanan</th>
+                                    <th class="border">Tanggal Pesanan</th>
+                                    <th class="border">Tanggal Kedatangan</th>
+                                @endif
                                 <th class="border">Status</th>
                                 <th class="border">Action</th>
                             </tr>
@@ -70,25 +72,17 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="txt-oflo">{{ $item->code }}</td>
                                 <td class="txt-oflo">{{ $item->total }}</td>
-                                <td class="txt-oflo">{{ $item->address }}</td>
-                                <td class="txt-oflo">{{ date('d F Y', strtotime($item->created_at)) }}</td>
-                                <td class="txt-oflo">{{ date('d F Y', strtotime($item->arrive)) }}</td>
-                                <td class="txt-oflo">{{ $item->status==0?'Belum bayar':($item->status==1?'Lunas':'Terkonfirmasi') }}</td>
-                                <td class="d-flex">
-                                    {{-- <a href="{{ route('transactiondetail.edit',$item) }}" class="btn btn-primary mx-1" title="Edit"><i class="fas fa-pencil-alt"></i></a> --}}
-                                    <a target="d_blank" href="{{ route('page.transaction.detail',$item)  }}" class="btn btn-warning mx-1" title="View"><i class="fas fa-eye"></i></a>
-                                    {{-- {!! Form::open(['route' => ['transactiondetail.destroy', $item], 'method' => 'delete']) !!}
-                                        <button type="submit" onclick="return confirm('are you sure?')" class="btn btn-danger mx-1" title="Delete"><i class="fas fa-trash-alt text-white"></i></button>
-                                    {!! Form::close() !!}
-                                </td> --}}
-                                @if ($item->status==1)
-                                <form action="{{ route('transactiondetail.update',$item) }}" method="post">
-                                    @csrf
-                                    @method('put')
-                                    <input type="hidden" name="status" value="2">
-                                    <button type="submit" onclick="return confirm('Konfirmasi pesanan?')" class="btn btn-success mx-1 text-white"><i class="fas fa-truck"></i></button>
-                                </form>
+                                @if (!$is_confirm)
+                                    <td class="txt-oflo">{{ $item->address }}</td>
+                                    <td class="txt-oflo">{{ date('d F Y', strtotime($item->created_at)) }}</td>
+                                    <td class="txt-oflo">{{ date('d F Y', strtotime($item->arrive)) }}</td>
                                 @endif
+                                <td class="txt-oflo">{{ $item->status==0?'Belum bayar':($item->status==1?'Menunggu Konfirmasi':'Terkonfirmasi') }}</td>
+                                <td class="d-flex">
+                                    <a target="d_blank" href="{{ route('page.transaction.detail',$item)  }}" class="btn btn-warning mx-1" title="View"><i class="fas fa-eye"></i></a>
+                                    @if ($item->status==1 && Auth::id()==1)
+                                        <a href="{{ route('transactiondetail.edit', $item) }}" class="btn btn-success text-white">Konfirmasi Pesanan</a>
+                                    @endif
                             </tr>
                             @endforeach
                         </tbody>

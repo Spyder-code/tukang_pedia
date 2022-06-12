@@ -31,7 +31,15 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $this->categoryService->store($request->all());
+        $data = $request->validate([
+            'name' => 'required',
+            'icon' => 'nullable',
+        ]);
+
+        if ($data['icon']==null) {
+            $data['icon'] = 'fas fa-list';
+        }
+        $this->categoryService->store($data);
         return redirect()->route('category.index')->with('success','Category has success created');
     }
 
@@ -50,7 +58,15 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $this->categoryService->update($request->all(),$category->id);
+        $data = $request->validate([
+            'name' => 'required',
+            'icon' => 'nullable',
+        ]);
+
+        if ($data['icon']==null) {
+            $data['icon'] = 'fas fa-list';
+        }
+        $this->categoryService->update($data,$category->id);
         return redirect()->route('category.index')->with('success','Category has success updated');
     }
 

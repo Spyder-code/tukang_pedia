@@ -65,7 +65,6 @@
                 var url = {!! json_encode(url('api/district')) !!}+'/'+val;
                 axios.get(url)
                     .then(function (response) {
-                        console.log(response);
                         var data = response.data;
                         $('#district').html('');
                         $.each(data, function (idx, item) {
@@ -79,12 +78,11 @@
                 var url = {!! json_encode(url('api/category')) !!}+'/'+val;
                 axios.get(url)
                     .then(function (response) {
-                        console.log(response);
                         var data = response.data;
                         $('#sub').html('');
                         $.each(data, function (idx, item) {
                             var html = '<option value="'+item.id+'">'+item.name+'</option>';
-                            $('#district').append(html);
+                            $('#sub').append(html);
                         });
                     })
             });

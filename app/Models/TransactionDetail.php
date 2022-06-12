@@ -17,6 +17,7 @@ class TransactionDetail extends Model
         'arrive',
         'address',
         'payment_method',
+        'payment_proof',
         'status',
     ];
 

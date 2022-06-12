@@ -215,11 +215,20 @@
                 @endif
                 <br>
                 <hr>
-                <form action="{{ route('transactiondetail.update',$detailTransaction) }}" method="POST" class="mt-2" id="form1" name="form1">
+                <form action="{{ route('transactiondetail.update',$detailTransaction) }}" method="POST" class="mt-2" id="form1" name="form1" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="status" value="1">
-                    <button type="button" id="konfirmasi" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Konfirmasi Pembayaran</button>
+                    {{-- input file tailwind --}}
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3 mb-6 md:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                                Bukti Pembayaran
+                            </label>
+                            <input type="file" name="payment_proof" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-first-name" required>
+                        </div>
+                    </div>
+                    <button type="submit" id="konfirmasi" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Konfirmasi Pembayaran</button>
                 </form>
             </div>
         </div>
@@ -233,13 +242,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
     $('#confirm-respon').hide();
-    $('#konfirmasi').click(function (e) {
-        $('#confirm-respon').show();
-        $('#detail').hide();
-        setTimeout(() => {
-            $('#form1').submit();
-        }, 5000);
-    });
+    // $('#konfirmasi').click(function (e) {
+    //     $('#confirm-respon').show();
+    //     $('#detail').hide();
+    //     setTimeout(() => {
+    //         $('#form1').submit();
+    //     }, 5000);
+    // });
 
     $('input[type=radio][name=bank]').change(function() {
     if (this.value == 'bni') {

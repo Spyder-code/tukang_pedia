@@ -40,7 +40,7 @@
             <div class="white-box">
                 <div class="d-md-flex justify-content-between mb-3">
                     <h3 class="box-title mb-0">List Mitra</h3>
-                    <a href="{{ route('mitra.create') }}" class="box-title mb-0 text-white btn btn-success">Create Mitra</a>
+                    {{-- <a href="{{ route('mitra.create') }}" class="box-title mb-0 text-white btn btn-success">Create Mitra</a> --}}
                 </div>
                 <div class="table-responsive">
                     <table class="table no-wrap data-table table-bordered">

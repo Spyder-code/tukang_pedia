@@ -13,4 +13,9 @@ class Category extends Model
         'name',
         'icon',
     ];
+
+    public function subCategories()
+    {
+        return $this->hasMany(SubCategory::class);
+    }
 }

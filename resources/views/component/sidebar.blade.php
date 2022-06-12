@@ -74,3 +74,12 @@
         <span class="hide-menu">Transaction Management</span>
     </a>
 </li>
+@if (Auth::id()==1)
+<li class="sidebar-item">
+    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('transactiondetail.index',['status'=>1]) }}"
+        aria-expanded="false">
+        <i class="fa fa-list" aria-hidden="true"></i>
+        <span class="hide-menu">Konfirmasi Pesanan</span>
+    </a>
+</li>
+@endif

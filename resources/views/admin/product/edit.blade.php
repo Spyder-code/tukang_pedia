@@ -8,10 +8,13 @@
                 {!! Form::open(['route' => ['product.update',$product], 'method' => 'put', 'files' => true]) !!}
                 <div class="row">
                     <div class="col">
-                        @include('component.input',['input'=> Form::text('title',$product->title,['class' => 'form-control']),'label'=> Form::label('Judul', 'Judul')])
+                        @include('component.input',['input'=> Form::text('title',$product->title,['class' => 'form-control']),'label'=> Form::label('Judul', 'Judul Layanan')])
                     </div>
                     <div class="col">
-                        @include('component.input',['input'=> Form::select('category_id',$category,$product->category_id,['class' => 'form-control']),'label'=> Form::label('Kategori', 'Kategori')])
+                        @include('component.input',['input'=> Form::select('category',$category,$product->category->category->id,['class' => 'form-control', 'id'=>'category']),'label'=> Form::label('Kategori', 'Kategori')])
+                    </div>
+                    <div class="col">
+                        @include('component.input',['input'=> Form::select('category_id',$sub,$product->category_id,['class' => 'form-control', 'id' => 'sub']),'label'=> Form::label('Kategori', 'Sub Kategori')])
                     </div>
                 </div>
                 <div class="row">
@@ -32,7 +35,7 @@
                 </div>
                     @include('component.input',['input'=> Form::textarea('description',$product->description,['class' => 'form-control']),'label'=> Form::label('description', 'Deskripsi')])
                     @include('component.input',['input'=> Form::file('image',null,['class' => 'form-control']),'label'=> Form::label('image', 'image')])
-                    <button type="submit" onclick="return confirm('are you sure?')" class="btn btn-success mx-1 text-white" title="Create"><i class="fas fa-plus"></i> Create</button>
+                    <button type="submit" onclick="return confirm('are you sure?')" class="btn btn-success mx-1 text-white" title="Create"><i class="fas fa-save"></i> Update</button>
                 {!! Form::close() !!}
             </div>
         </div>
