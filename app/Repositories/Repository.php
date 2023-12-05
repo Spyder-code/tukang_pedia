@@ -67,7 +67,7 @@ class Repository extends RepositoryAbstract
 
     public function insertFile($data, $path)
     {
-        $file_name = time().'.'.$data->getClientOriginalExtension();
+        $file_name = time().rand(1,99999999).'.'.$data->getClientOriginalExtension();
         $path = $data->storeAs('public/'.$path,$file_name);
         $url = Storage::url($path);
         $file_url = url($url);

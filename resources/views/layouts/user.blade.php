@@ -66,7 +66,8 @@
         <nav class="flex ml-7 md:ml-28 gap-5 md:gap-10 py-3">
             <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('page.home') }}">Home</a>
             <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('home') }}">Mitra</a>
-            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="">Download App</a>
+            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="">Jasa Satuan</a>
+            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="">Jasa Borongan</a>
             <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('page.pesanan') }}">Pesanan <sup>{{ Auth::check()?Auth::user()->cart->count():'' }}</sup></a>
             <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('page.transaksi') }}">Transaksi Saya</a>
         </nav>

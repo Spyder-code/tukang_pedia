@@ -25,16 +25,39 @@
                         @include('component.input',['input'=> Form::select('district_id',[''=>''],null,['class' => 'form-control', 'id' => 'district']),'label'=> Form::label('Kecamatan', 'Kecamatan')])
                     </div>
                 </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <label for="is_grouping">Tipe Layanan</label><br>
+                        <div class="d-flex" style="gap: 30px">
+                            <label for="is_grouping_1">
+                                <input type="radio" name="is_grouping" id="is_grouping_1" value="0" checked>
+                                Layanan Satuan
+                            </label>
+                            <label for="is_grouping_2">
+                                <input type="radio" name="is_grouping" id="is_grouping_2" value="1">
+                                Layanan Borongan
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col">
-                        @include('component.input',['input'=> Form::number('price',null,['class' => 'form-control']),'label'=> Form::label('Harga', 'Harga per orang')])
+                        @include('component.input',['input'=> Form::number('price',null,['class' => 'form-control']),'label'=> Form::label('harga', 'Harga per orang',['id'=>'harga-label'])])
                     </div>
                     <div class="col">
-                        @include('component.input',['input'=> Form::number('stock',null,['class' => 'form-control']),'label'=> Form::label('stock', 'Jumlah orang yang tersedia')])
+                        @include('component.input',['input'=> Form::number('stock',null,['class' => 'form-control']),'label'=> Form::label('stock', 'Jumlah orang yang tersedia',['id'=>'stock-label'])])
                     </div>
                 </div>
                     @include('component.input',['input'=> Form::textarea('description',null,['class' => 'form-control']),'label'=> Form::label('description', 'Deskripsi')])
-                    @include('component.input',['input'=> Form::file('image',null,['class' => 'form-control']),'label'=> Form::label('image', 'image')])
+                <div class="row">
+                    <div class="col">
+                        @include('component.input',['input'=> Form::file('image',null,['class' => 'form-control']),'label'=> Form::label('image', 'Foto Utama')])
+                    </div>
+                    <div class="col">
+                        <label for="images">Foto Lainya</label>
+                        <input type="file" name="images[]" id="images" multiple>
+                    </div>
+                </div>
                     <button type="submit" onclick="return confirm('are you sure?')" class="btn btn-success mx-1 text-white" title="Create"><i class="fas fa-plus"></i> Create</button>
                 {!! Form::close() !!}
             </div>
@@ -87,5 +110,15 @@
                     })
             });
         })
+        $('input[type=radio][name=is_grouping]').change(function() {
+            if (this.value == 1) {
+                $('#harga-label').html('Harga borongan');
+                $('#stock-label').html('Jumlah Ketersediaan Layanan');
+            }
+            else {
+                $('#harga-label').html('Harga per orang');
+                $('#stock-label').html('Jumlah orang yang tersedia');
+            }
+        });
     </script>
 @endsection

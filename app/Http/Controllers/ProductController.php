@@ -58,6 +58,8 @@ class ProductController extends Controller
             'price' => 'required',
             'stock' => 'required',
             'image' => 'required',
+            'is_grouping' => 'required',
+            'images' => 'nullable',
             'description' => 'required',
         ]);
         $image = $this->regencyService->insertFile($request->image,'product', '.png');
@@ -65,7 +67,12 @@ class ProductController extends Controller
         $data['user_id'] = Auth::id();
         $data['image'] = $image;
         $data['rating'] = 0;
-        $this->productService->store($data);
+        $product = $this->productService->store($data);
+        if($product){
+            foreach ($data['images'] as $image) {
+                $this->productService->insertImage($image,$product->id);
+            }
+        }
         return redirect()->route('product.index')->with('success','Product has success created');
     }
 
@@ -96,6 +103,8 @@ class ProductController extends Controller
             'price' => 'required',
             'stock' => 'required',
             'image' => 'nullable',
+            'images' => 'nullable',
+            'is_grouping' => 'required',
             'description' => 'required',
         ]);
 

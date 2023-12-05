@@ -22,21 +22,21 @@
                     <div class="grid grid-cols-2">
                         <div class="my-1 pr-4">
                             <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nama lengkap sesuai KTP <sup class="text-red-400">*</sup></label>
-                            <input type="text" value="{{ Auth::user()->name }}" name="user['name']" required id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <input type="text" value="{{ old('user.name',Auth::user()->name) }}" name="user['name']" required id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div class="my-1 pr-4">
                             <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">NIK <sup class="text-red-400">*</sup></label>
-                            <input type="text" name="nik" required id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <input type="text" name="{{ old('nik') }}" required id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                     </div>
                     <div class="grid grid-cols-2 my-2">
                         <div class="my-1 pr-4">
                             <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email <sup class="text-red-400">*</sup></label>
-                            <input type="text" value="{{ Auth::user()->email }}" readonly name="user['email']" required id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <input type="text" value="{{ old('user.email',Auth::user()->email) }}" readonly name="user['email']" required id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div class="my-1 pr-4">
                             <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">No. Telp <sup class="text-red-400">*</sup></label>
-                            <input type="text" name="user['phone']" value="{{ Auth::user()->phone }}" required id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <input type="text" name="user['phone']" value="{{ old('user.phone',Auth::user()->phone) }}" required id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                     </div>
 
@@ -44,35 +44,35 @@
                     <div class="grid grid-cols-2">
                         <div class="my-1 pr-4">
                             <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nama CV/PT atau Identitas lain <sup class="text-red-400">*</sup></label>
-                            <input type="text" name="name" required id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <input type="text" name="name" value="{{ old('name') }}" required id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div class="my-1 pl-4">
                             <label for="skill" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Jenis Industri <sup class="text-red-400">*</sup></label>
                             <select id="skill" name="type" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected disabled>Pilih Jenis</option>
-                                <option value="perusahaan">CV/PT Atau Perusahaan</option>
-                                <option value="perorangan">Perorangan</option>
+                                <option {{ old('type')=='perusahaan'?'selected':'' }} value="perusahaan">CV/PT Atau Perusahaan</option>
+                                <option {{ old('type')=='perorangan'?'selected':'' }} value="perorangan">Perorangan</option>
                             </select>
                         </div>
                     </div>
                     <div class="grid grid-cols-2">
                         <div class="my-1 pr-4">
                             <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">NPWP</label>
-                            <input type="text" name="npwp" id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <input type="text" name="npwp" value="{{ old('npwp') }}" id="base-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div class="my-1 pl-4">
                             <label for="skill" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Spesialis Keahlian <sup class="text-red-400">*</sup></label>
                             <select id="skill" name="skill" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected disabled>Pilih Keahlian</option>
                                 @foreach ($category as $item)
-                                    <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                    <option {{ old('skill')==$item->name?'selected':'' }} value="{{ $item->name }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="my-1">
                         <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Alamat <sup class="text-red-400">*</sup></label>
-                        <textarea id="message" name="address" rows="3" class="block p-2 w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+                        <textarea id="message" name="address" rows="3" class="block p-2 w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>{{ old('address') }}</textarea>
                     </div>
                     <div class="grid grid-cols-3">
                         <div class="my-1 pr-4">

@@ -25,12 +25,27 @@
                         @include('component.input',['input'=> Form::select('district_id',[$product->district_id => $product->district->name ],$product->district_id,['class' => 'form-control', 'id' => 'district']),'label'=> Form::label('Kecamatan', 'Kecamatan')])
                     </div>
                 </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <label for="is_grouping">Tipe Layanan</label><br>
+                        <div class="d-flex" style="gap: 30px">
+                            <label for="is_grouping_1">
+                                <input type="radio" name="is_grouping" id="is_grouping_1" value="0" {{ $product->is_grouping==0?'checked':'' }}>
+                                Layanan Satuan
+                            </label>
+                            <label for="is_grouping_2">
+                                <input type="radio" name="is_grouping" id="is_grouping_2" value="1" {{ $product->is_grouping==1?'checked':'' }}>
+                                Layanan Borongan
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col">
-                        @include('component.input',['input'=> Form::number('price',$product->price,['class' => 'form-control']),'label'=> Form::label('Harga', 'Harga per orang')])
+                        @include('component.input',['input'=> Form::number('price',$product->price,['class' => 'form-control']),'label'=> Form::label('Harga', 'Harga per orang',['id'=>'harga-label'])])
                     </div>
                     <div class="col">
-                        @include('component.input',['input'=> Form::number('stock',$product->stock,['class' => 'form-control']),'label'=> Form::label('stock', 'Jumlah orang yang tersedia')])
+                        @include('component.input',['input'=> Form::number('stock',$product->stock,['class' => 'form-control']),'label'=> Form::label('stock', 'Jumlah orang yang tersedia',['id'=>'stock-label'])])
                     </div>
                 </div>
                     @include('component.input',['input'=> Form::textarea('description',$product->description,['class' => 'form-control']),'label'=> Form::label('description', 'Deskripsi')])
@@ -76,5 +91,16 @@
                     })
             });
         })
+
+        $('input[type=radio][name=is_grouping]').change(function() {
+            if (this.value == 1) {
+                $('#harga-label').html('Harga borongan');
+                $('#stock-label').html('Jumlah Ketersediaan Layanan');
+            }
+            else {
+                $('#harga-label').html('Harga per orang');
+                $('#stock-label').html('Jumlah orang yang tersedia');
+            }
+        });
     </script>
 @endsection

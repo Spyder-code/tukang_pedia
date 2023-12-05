@@ -4,7 +4,7 @@
     <div class="flex flex-col md:flex-row">
         <div class="w-100 md:w-1/4 px-5">
             <div class="category my-3 bg-white">
-                <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-xl font-bold">Categories</div>
+                <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-xl font-bold">Kategori</div>
                 <div class="">
                     @foreach ($category as $item)
                     <a href="{{ route('page.product.category', $item->id) }}" class="flex hover:bg-blue-100 px-5 py-3 text-center text-md font-bold border-b border-blue-400">

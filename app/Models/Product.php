@@ -21,6 +21,7 @@ class Product extends Model
         'rating',
         'description',
         'image',
+        'is_grouping',
     ];
 
     public function category()

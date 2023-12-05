@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('stock');
             $table->integer('rating');
             $table->text('description');
-            $table->string('image');
+            $table->boolean('is_grouping')->default(0);
             $table->timestamps();
         });
     }
