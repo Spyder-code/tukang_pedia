@@ -48,4 +48,14 @@ class Product extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

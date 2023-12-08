@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Province;
+use App\Models\SubCategory;
 use App\Models\TransactionDetail;
 use App\Repositories\CartService;
 use App\Repositories\CategoryService;
@@ -43,7 +44,7 @@ class PageController extends Controller
         $regency = $this->regencyService->all()->where('province_id',15)->sortBy(function($string) {
             return strlen($string->name);
         });
-        $product = $this->productService->all();
+        $product = Product::inRandomOrder()->orderBy('title')->get()->take(12);
         return view('user.home', compact('category','regency','product'));
     }
 
@@ -60,9 +61,17 @@ class PageController extends Controller
 
     public function product_wilayah($id)
     {
-        $category =  $this->subCategoryService->all();
         $regency = $this->regencyService->wilayah();
         $product = $this->productService->all()->where('regency_id',$id);
+        $categories_id = Product::where('regency_id',$id)->pluck('category_id')->toArray();
+        $category =  SubCategory::whereIn('id',$categories_id)->get();
+        if(request('type')){
+            if(request('type')=='borongan'){
+                $product = $this->productService->all()->where('is_grouping',1)->where('regency_id',$id);
+            }else{
+                $product = $this->productService->all()->where('is_grouping',0)->where('regency_id',$id);;
+            }
+        }
         return view('user.product', compact('product','category','regency'));
     }
 
@@ -70,7 +79,20 @@ class PageController extends Controller
     {
         $category = $this->subCategoryService->all()->where('category_id',$id);
         $regency = $this->regencyService->wilayah();
-        $product = $this->productService->all()->where('category_id',$id);
+        $product = Product::where('category_id',$id)->orWhereHas('category', function($q) use($id){
+            $q->where('category_id',$id);
+        })->get();
+        if(request('type')){
+            if(request('type')=='borongan'){
+                $product = Product::where('category_id',$id)->where('is_grouping',1)->orWhereHas('category', function($q) use($id){
+                    $q->where('category_id',$id);
+                })->where('is_grouping',1)->get();
+            }else{
+                $product = Product::where('category_id',$id)->where('is_grouping',0)->orWhereHas('category', function($q) use($id){
+                    $q->where('category_id',$id);
+                })->where('is_grouping',0)->get();
+            }
+        }
         return view('user.product', compact('product','category','regency'));
     }
 
@@ -106,5 +128,10 @@ class PageController extends Controller
         });
         $product = Product::where('title','like','%'.$request->name.'%')->orWhere('description','like','%'.$request->name.'%')->get();
         return view('user.home', compact('category','regency','product'));
+    }
+
+    public function sync()
+    {
+        return view('sync');
     }
 }

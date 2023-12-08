@@ -15,6 +15,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->integer('total');
             $table->text('address');
             $table->string('payment_method');
+            $table->string('payment_proof')->nullable();
             $table->date('arrive');
             $table->boolean('status');
             $table->timestamps();
@@ -23,6 +24,6 @@ class CreateTransactionDetailsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('transactiondetails');
+        Schema::dropIfExists('transaction_details');
     }
 }

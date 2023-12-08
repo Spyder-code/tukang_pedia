@@ -4,7 +4,9 @@
     <div class="flex flex-col md:flex-row">
         <div class="w-100 md:w-1/4 px-5">
             <div class="category my-3 bg-white">
-                <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-2xl font-bold">Categories</div>
+                @if ($category->count()>0)
+                    <div class="px-5 py-1 rounded-lg bg-blue-400 text-white text-center text-2xl font-bold">Categories</div>
+                @endif
                 <div class="">
                     @foreach ($category as $item)
                     <a href="{{ route('page.product.category', $item->id) }}" class="flex hover:bg-blue-100 px-5 py-3 text-center text-md font-bold border-b border-blue-400">
@@ -34,7 +36,9 @@
                 @foreach ($product as $item)
                 <div class="my-4 text-center">
                     <div class="flex justify-center">
-                        <img src="{{ $item->image }}" style="height: 141px; width: 171px;">
+                        <a href="{{ $item->image }}" class="image-link">
+                            <img src="{{ $item->image }}" style="height: 141px; width: 171px;">
+                        </a>
                     </div>
                     <p class="text-lg font-bold">{{ $item->title }}</p>
                     <p class="mb-2 uang">Rp. {{ number_format($item->price,2,',','.') }}</p>

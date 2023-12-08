@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ProductFileImport;
 use App\Models\Product;
 use App\Repositories\CategoryService;
 use App\Repositories\ProductService;
@@ -9,6 +10,8 @@ use App\Repositories\RegencyService;
 use App\Repositories\SubCategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Imports\ProductImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -121,5 +124,11 @@ class ProductController extends Controller
     {
         $this->productService->destroy($product->id);
         return redirect()->route('product.index')->with('success','Product has success deleted');
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new ProductFileImport, $request->file);
+        return back()->with('success', 'All good!');
     }
 }

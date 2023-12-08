@@ -1,17 +1,19 @@
 @extends('layouts.user')
 @section('content')
-<main class="py-1 md:py-5">
-    <form action="{{ route('cart.store') }}" method="post" class="md-2 md:mx-20 flex flex-col md:flex-row my-3 bg-white rounded-3xl shadow-2xl">
+<main class="py-1 md:py-5 bg-white rounded-3xl shadow-2xl">
+    <form action="{{ route('cart.store') }}" method="post" class="md-2 md:mx-20 flex flex-col md:flex-row my-3">
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <input type="hidden" name="price" value="{{ $product->price }}">
         <div class="w-1/2 m-10 flex justify-center">
-            <img src="{{ $product->image }}" alt="">
+            <a href="{{ $product->image }}" class="image-link">
+                <img src="{{ $product->image }}" alt="">
+            </a>
         </div>
         <div class="w-3/4 ml-4 md:ml-1">
             <div class="my-4">
                 <p class="text-3xl font-bold">{{ $product->title }}</p>
-                <p class="mb-2 text-2xl border-b-2 border-blue-400">Rp. {{ number_format($product->price,2,',','.') }}</p>
+                <p class="my-2 text-2xl border-b-2 border-blue-400">Rp. {{ number_format($product->price,2,',','.') }}</p>
                 <div class="flex mt-5 mr-5">
                     <div class="w-1/4">
                         <span class="font-bold text-lg">Daerah</span>
@@ -25,7 +27,7 @@
                         <span class="font-bold text-lg">Kuantitas</span>
                     </div>
                     <div class="w-3/4 ml-8 md:ml-1">
-                        <input type="number" required name="qty" min="1" max="{{ $product->stock }}" class="w-full rounded-lg border border-blue-400 py-2 px-5"> <span>Tersedia : {{ $product->stock }} Orang</span>
+                        <input type="number" required name="qty" min="1" max="{{ $product->stock }}" class="w-full rounded-lg border border-blue-400 py-2 px-5"> <span>Tersedia : {{ $product->stock }} {{ $product->is_grouping==1?'Stock':'Orang' }}</span>
                     </div>
                 </div>
                 <div class="flex mt-5 mr-5">
@@ -68,5 +70,41 @@
             </div>
         </div>
     </form>
+    <div class="md-2 md:mx-20 flex flex-col md:flex-row gap-5">
+        <div class="w-1/2">
+            <div class="flex justify-center gap-5 flex-wrap">
+                @foreach ($product->images as $image)
+                    <a href="{{ $image->path }}" class="image-link">
+                        <img src="{{ $image->path }}" alt="" style="width: 150px; height:120px">
+                    </a>
+                @endforeach
+            </div>
+        </div>
+        <div class="w-3/4 ml-4 md:ml-1">
+            <div class="ml-16">
+                @forelse ($product->transactions as $transaction)
+                    <article>
+                        <div class="flex items-center mb-4">
+                            <img class="w-10 h-10 me-4 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="">
+                            <div class="font-medium dark:text-white">
+                                <p>{{ $review->user->name }} </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
+                            @for ($i = 0; $i < $review->star; $i++)
+                                <i class="fas fa-star text-yellow-300"></i>
+                            @endfor
+                            <h3 class="ms-2 text-sm font-semibold text-gray-900 dark:text-white">{{ $review->comment }}</h3>
+                        </div>
+                        <footer class="mb-5 text-sm text-gray-500 dark:text-gray-400"><p>Reviewed on <time datetime="{{ date('Y-m-d H:i', strtotime($review->created_at)) }}">{{ date('d/m/Y', strtotime($review->created_at)) }}</time></p></footer>
+                    </article>
+                @empty
+                <div class="text-center w-100 py-4" style="border: 1px dashed black">
+                    Tidak Ada Review!
+                </div>
+                @endforelse
+            </div>
+        </div>
+    </div>
 </main>
 @endsection

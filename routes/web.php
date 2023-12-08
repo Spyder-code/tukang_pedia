@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionDetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/sync', [PageController::class,'sync'])->name('page.sync');
 Route::get('/', [PageController::class,'home'])->name('page.home');
 Route::get('/account', [PageController::class,'account'])->name('page.account');
 Route::get('/register-mitra', [PageController::class,'registerMitra'])->name('page.register.mitra');
@@ -27,6 +29,7 @@ Route::get('/product-category/{id}', [PageController::class,'product_category'])
 Route::get('/product-detail/{product}', [PageController::class,'detail_product'])->name('page.product.detail');
 Route::get('/detail/transaction/{detailTransaction}', [PageController::class,'detail_transaction'])->name('page.transaction.detail');
 Route::put('/update-payment/{id}', [TransactionDetailController::class,'updatePaymentMethod'])->name('update.payment');
+Route::post('/import-product', [ProductController::class,'import'])->name('product.import');
 
 
 Route::get('/blank', function () {

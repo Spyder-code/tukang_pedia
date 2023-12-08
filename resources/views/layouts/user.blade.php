@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/mint.css') }}">
     <script src="{{ asset('fontawesome-free-5.15.4-web/js/all.js') }}"></script>
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('logo-icon.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Tukang Pedia</title>
 </head>
 <body class="bg-gray-200">
@@ -66,8 +67,8 @@
         <nav class="flex ml-7 md:ml-28 gap-5 md:gap-10 py-3">
             <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('page.home') }}">Home</a>
             <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('home') }}">Mitra</a>
-            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="">Jasa Satuan</a>
-            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="">Jasa Borongan</a>
+            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('page.product.category',['id'=>13,'type'=>'satuan'])}}">Jasa Satuan</a>
+            <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('page.product.category',['id'=>13,'type'=>'borongan'])}}">Jasa Borongan</a>
             <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('page.pesanan') }}">Pesanan <sup>{{ Auth::check()?Auth::user()->cart->count():'' }}</sup></a>
             <a class="text-white text-xs md:text-xl hover:text-blue-900" href="{{ route('page.transaksi') }}">Transaksi Saya</a>
         </nav>
@@ -116,6 +117,12 @@
     <script src="{{ asset('js/noty.js') }}"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function() {
+            $('.image-link').magnificPopup({type:'image'});
+        });
+    </script>
     @yield('script')
 </body>
 </html>

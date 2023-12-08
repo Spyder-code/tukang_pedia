@@ -14,4 +14,9 @@ class Review extends Model
         'star',
         'comment',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
 }
