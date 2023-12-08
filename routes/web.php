@@ -46,9 +46,9 @@ Route::middleware(['auth', 'mitra'])->prefix('dashboard')->group(function () {
     Route::put('/profile/image/{id}', [App\Http\Controllers\UserController::class, 'updateImage'])->name('profile.update.image');
     Route::resource('category',App\Http\Controllers\CategoryController::class);
     Route::resource('product',App\Http\Controllers\ProductController::class);
-    Route::resource('review',App\Http\Controllers\ReviewController::class);
 });
 
+Route::resource('review',App\Http\Controllers\ReviewController::class);
 Route::resource('transaction',App\Http\Controllers\TransactionController::class);
 Route::resource('mitra',App\Http\Controllers\MitraController::class);
 Route::resource('cart',App\Http\Controllers\CartController::class);

@@ -32,7 +32,7 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $this->reviewService->store($request->all());
-        return redirect()->route('review.index')->with('success','Review has success created');
+        return back()->with('success','Review has success created');
     }
 
 

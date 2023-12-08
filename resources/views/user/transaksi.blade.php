@@ -81,6 +81,7 @@
                                         <a href="{{ route('page.transaction.detail',$item) }}" class="text-green-600 hover:text-green-900 dark:text-green-500 dark:hover:underline">Bayar Sekarang</a>
                                         @endif
                                         <a href="{{ route('page.transaction.detail',$item) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-500 dark:hover:underline">Detail</a>
+                                        <a href="{{ route('page.product.detail',$item->transaction->product) }}" class="text-yellow-600 hover:text-yellow-900 dark:text-yellow-500 dark:hover:underline">Review</a>
                                     </td>
                                 </tr>
                                 @endforeach

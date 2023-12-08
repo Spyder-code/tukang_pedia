@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -52,5 +53,17 @@ class User extends Authenticatable
     public function cart()
     {
         return $this->hasMany(Cart::class);
+    }
+
+    public function hasReview($product_id)
+    {
+        $transaction = Transaction::where('user_id',Auth::id())->where('product_id',$product_id)->first();
+        if($transaction){
+            if($transaction->review){
+                return true;
+            }
+        }
+
+        return false;
     }
 }

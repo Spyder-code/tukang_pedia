@@ -83,23 +83,50 @@
         <div class="w-3/4 ml-4 md:ml-1">
             <div class="ml-16">
                 @forelse ($product->transactions as $transaction)
-                    <article>
-                        <div class="flex items-center mb-4">
-                            <img class="w-10 h-10 me-4 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="">
-                            <div class="font-medium dark:text-white">
-                                <p>{{ $review->user->name }} </p>
+                    @if (!Auth::user()->hasReview($product->id))
+                        <form action="{{ route('review.store') }}" method="POST" class="text-center w-100 py-4">
+                            @csrf
+                            <input type="hidden" name="star" id="star-num">
+                            <input type="hidden" name="transaction_id" value="{{ $transaction->id }}">
+                            <label>Tulis review</label>
+                            <textarea name="comment" id="comment" cols="30" rows="5" class="p-5" style="border: 1px dashed black; width:100%"></textarea>
+                            <div class="my-2">
+                                <i class="fas fa-star text-grey-300" style="font-size: 2rem" id="star-1" onclick="changeStar(1)"></i>
+                                <i class="fas fa-star text-grey-300" style="font-size: 2rem" id="star-2" onclick="changeStar(2)"></i>
+                                <i class="fas fa-star text-grey-300" style="font-size: 2rem" id="star-3" onclick="changeStar(3)"></i>
+                                <i class="fas fa-star text-grey-300" style="font-size: 2rem" id="star-4" onclick="changeStar(4)"></i>
+                                <i class="fas fa-star text-grey-300" style="font-size: 2rem" id="star-5" onclick="changeStar(5)"></i>
                             </div>
-                        </div>
-                        <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
-                            @for ($i = 0; $i < $review->star; $i++)
-                                <i class="fas fa-star text-yellow-300"></i>
-                            @endfor
-                            <h3 class="ms-2 text-sm font-semibold text-gray-900 dark:text-white">{{ $review->comment }}</h3>
-                        </div>
-                        <footer class="mb-5 text-sm text-gray-500 dark:text-gray-400"><p>Reviewed on <time datetime="{{ date('Y-m-d H:i', strtotime($review->created_at)) }}">{{ date('d/m/Y', strtotime($review->created_at)) }}</time></p></footer>
-                    </article>
+                            <div class="my-2">
+                                <button type="submit" class="px-5 py-2 bg-yellow-600 rounded-full hover:bg-yellow-400 text-white font-bold w-100">Kirim Review</button>
+                            </div>
+                        </form>
+                    @endif
+                    @if ($transaction->review)
+                        <article>
+                            <div class="flex items-center mb-4">
+                                <img class="w-10 h-10 me-4 rounded-full" src="{{ $transaction->user->avatar }}" alt="">
+                                <div class="font-medium dark:text-white">
+                                    <p>{{ $transaction->user->name }} </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
+                                @for ($i = 0; $i < $transaction->review->star; $i++)
+                                    <i class="fas fa-star text-yellow-300"></i>
+                                @endfor
+                                <h3 class="ms-2 text-sm font-semibold text-gray-900 dark:text-white">{{ $transaction->review->comment }}</h3>
+                            </div>
+                            <footer class="mb-5 text-sm text-gray-500 dark:text-gray-400"><p>Reviewed on <time datetime="{{ date('Y-m-d H:i', strtotime($transaction->review->created_at)) }}">{{ date('d/m/Y', strtotime($transaction->review->created_at)) }}</time></p></footer>
+                        </article>
+                    @else
+                    <hr>
+                    <div class="text-center w-100 py-4" style="border: 1px double black">
+                        Tidak Ada Review!
+                    </div>
+                    @endif
                 @empty
-                <div class="text-center w-100 py-4" style="border: 1px dashed black">
+                <hr>
+                <div class="text-center w-100 py-4" style="border: 1px double black">
                     Tidak Ada Review!
                 </div>
                 @endforelse
@@ -107,4 +134,19 @@
         </div>
     </div>
 </main>
+@endsection
+@section('script')
+<script>
+    function changeStar(num){
+        $('#star-1').removeClass('text-grey-300');
+        $('#star-2').removeClass('text-grey-300');
+        $('#star-3').removeClass('text-grey-300');
+        $('#star-4').removeClass('text-grey-300');
+        $('#star-5').removeClass('text-grey-300');
+        for (let i = 1; i <= num ; i++) {
+            $('#star-'+i).addClass('text-yellow-300');
+        }
+        $('#star-num').val(num);
+    }
+</script>
 @endsection
